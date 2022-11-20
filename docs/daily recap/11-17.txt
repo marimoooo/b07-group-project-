@@ -2,11 +2,11 @@ Name: All members
 
 What have you done since yesterday?
     - Create a Github repository
+    - Create a Jira project
+    - Have our first meeting
 
 What are you planning on doing today?
-    - Have our first meeting
     - Discuss the collaboration for the project
-    - Create a Jira project
 
 Any impediments or stumbling blocks?
     - None
