@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">07 final project</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="name">Name</string>
+    <string name="course_code">Course Code</string>
+    <string name="delete">Delete</string>
+    <string name="course_name">Course Name</string>
+    <string name="enter_course_name_here">enter course name here</string>
+    <string name="enter_course_code_here">enter_course_code_here</string>
+    <string name="course_offering">course offering</string>
+    <string name="enter_course_details">Enter Course details</string>
+    <string name="please_fill_in_the_following_details_to_delete_a_existing_course">Please fill in the following details to delete a existing course</string>
+    <string name="Session_offering">Session Offering</string>
+    <string name="please_fill_in_the_following_details_to_modify_a_existing_course">please fill in the following details to modify a existing course</string>
+    <string name="old">Old</string>
+    <string name="old_course">Old Course</string>
+    <string name="original_course">original course</string>
+    <string name="new_course">New Course</string>
+    <string name="original_course1">Original Course</string>
+</resources>
