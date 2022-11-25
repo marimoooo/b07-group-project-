@@ -1,21 +1,19 @@
-package timeline;
+package javaapplication;
+
+import java.util.List;
+
 
 public class Course {
-	String course;
-    String[] session;
-    String[] prerequisites;
     
-    public Course() {
-		course = "";
-		session = null;
-		prerequisites = null;
-	}
-	
-	public Course(String course, String[] session, String[] prerequisites) {
-		this.course = course;
-		this.session = session;
-		this.prerequisites = prerequisites;
-	}
-	
-	
+    public String code;
+    public List<String> session;
+    public List<String> prerequisites;
+
+    public Course(String code, List<String> session, List<String> prerequisites) {
+        this.code = code;
+        this.session = session;
+        this.prerequisites = prerequisites;
+    }
+    
+    
 }
