@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".Signup">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="Sign up here"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/username"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8"/>
+
     <EditText
         android:id="@+id/username"
         android:layout_width="match_parent"
@@ -34,7 +47,7 @@
         android:layout_marginEnd="20dp"/>
 
     <EditText
-        android:id="@+id/confirm_password"
+        android:id="@+id/confirmPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Confirm password"
@@ -47,47 +60,33 @@
         android:layout_marginEnd="20dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/signUpButton"
+        android:id="@+id/studentSignUpButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:text="Sign Up"
-        app:layout_constraintTop_toBottomOf="@+id/confirm_password"
+        android:text="Student Sign Up"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPassword"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"/>
+        android:layout_marginEnd="220dp"/>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="or"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpButton"
-        app:layout_constraintVertical_bias="0.04" />
-
-    <TextView
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/adminSignUpButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Admin sign up"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpButton"
-        app:layout_constraintVertical_bias="0.219" />
+        android:layout_marginTop="40dp"
+        android:text="Admin Sign Up"
+        app:layout_constraintTop_toBottomOf="@+id/confirmPassword"
+        android:layout_marginStart="220dp"
+        android:layout_marginEnd="20dp"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="190dp"
         android:background="@color/cardview_light_background"
         android:text="login"
-        app:layout_constraintTop_toBottomOf="@+id/adminSignUpButton"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/studentSignUpButton"
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
