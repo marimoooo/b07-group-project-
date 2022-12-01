@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">B07 course addition</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Add a new Course</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Make Course Schedule</string>
+    <string-array name="dropdownmenu">
+        <item>Fall</item>
+        <item>Winter</item>
+        <item>Summer</item>
+    </string-array>
+    <string-array name="courselist">
+        <item>C1</item>
+        <item>C2</item>
+        <item>C3</item>
+    </string-array>
+    <string name="Enter_Course_details">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="add_new_course">ADD NEW COURSE</string>
+    <string name="enter_course_details">Enter Course details</string>
+    <string name="course_code">COURSE CODE</string>
+    <string name="please_select_the_courses_that_you_want_to_take">Please select the courses that you want to take</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="this_will_be_the_final_output_that_is_the_timetable">This will be the final output that is the timetable</string>
+    <string name="name1">Sessions</string>
+    <string name="to_take_the_targeted_courses_you_ll_need_to_take_the_the_following_courses_in_the_following_manner">To take the targeted courses, you\'ll need to take the the following courses in the following manner</string>
+    <string name="name3">Courses</string>
+</resources>
