@@ -7,97 +7,115 @@
     tools:context=".CourseDeletion">
 
     <Button
-        android:id="@+id/button_first"
-        android:layout_width="180dp"
-        android:layout_height="45dp"
+        android:id="@+id/button_delete"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
         android:background="@color/lime_green"
-        android:text="@string/delete"
-        android:textColor="@color/white"
+        android:text="@string/delete_course"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/courseCode"
-        app:layout_constraintVertical_bias="0.662" />
+        app:layout_constraintVertical_bias="0.189" />
 
-    <TextView
-        android:id="@+id/courseName"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/button_delete_name"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="220dp"
-        android:text="@string/course_name"
-        android:textColor="#000000"
-        android:textSize="20sp"
+        android:background="@color/lime_green"
+        android:text="@string/delete_course_name"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.332"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/courseCode"
+        app:layout_constraintVertical_bias="0.359" />
+
+    <Button
+        android:id="@+id/button_delete_course_code"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@color/lime_green"
+        android:text="@string/delete_course_code"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/courseCode"
+        app:layout_constraintVertical_bias="0.527" />
+
+    <Button
+        android:id="@+id/button_delete_offering"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@color/lime_green"
+        android:text="@string/delete_course_session_offerings"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/courseCode"
+        app:layout_constraintVertical_bias="0.697" />
+
+    <Button
+        android:id="@+id/button_delete_preq"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@color/lime_green"
+        android:text="@string/delete_course_prerequisites"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/courseCode"
+        app:layout_constraintVertical_bias="0.871" />
 
     <TextView
         android:id="@+id/courseCode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="36dp"
         android:text="@string/course_code"
         android:textColor="#000000"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.324"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courseName" />
-
-    <TextView
-        android:id="@+id/offering"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="196dp"
-        android:text="@string/Session_offering"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.365"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courseName" />
+        app:layout_constraintTop_toBottomOf="@+id/instructionCD" />
 
     <EditText
-        android:id="@+id/enteredCC"
-        android:layout_width="258dp"
-        android:layout_height="50dp"
+        android:id="@+id/enteredCourseCode"
+        android:layout_width="207dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/enter_course_name_here"
-        android:textColor="#B4655F5F"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.627"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courseCode" />
-
-    <EditText
-        android:id="@+id/enteredCN"
-        android:layout_width="258dp"
-        android:layout_height="50dp"
-        android:ems="10"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:text="@string/enter_course_code_here"
-        android:textColor="#B4655F5F"
-        android:textSize="14sp"
+        android:textColor="#4E4646"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.627"
+        app:layout_constraintHorizontal_bias="0.524"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/courseName" />
+        app:layout_constraintTop_toBottomOf="@+id/courseCode"
+        tools:ignore="LabelFor" />
 
     <TextView
         android:id="@+id/enterDetailInsCD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="64dp"
         android:text="@string/enter_course_details"
-        android:textColor="@color/lime_green"
+        android:textColor="#2CA31F"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -110,15 +128,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/enterDetailInsCD" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="244dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.574"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enteredCC" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

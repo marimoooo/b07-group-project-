@@ -13,8 +13,8 @@
     <string name="course_code">Course Code</string>
     <string name="delete">Delete</string>
     <string name="course_name">Course Name</string>
-    <string name="enter_course_name_here">enter course name here</string>
-    <string name="enter_course_code_here">enter_course_code_here</string>
+    <string name="enter_course_name_here">enter course name</string>
+    <string name="enter_course_code_here">enter course code</string>
     <string name="course_offering">course offering</string>
     <string name="enter_course_details">Enter Course details</string>
     <string name="please_fill_in_the_following_details_to_delete_a_existing_course">Please fill in the following details to delete a existing course</string>
@@ -25,4 +25,21 @@
     <string name="original_course">original course</string>
     <string name="new_course">New Course</string>
     <string name="original_course1">Original Course</string>
+    <string name="modify">Modify</string>
+    <string name="delete_course">Delete Course</string>
+    <string name="delete_course_name">delete course name</string>
+    <string name="delete_course_code">delete course code</string>
+    <string name="delete_course_session_offerings">delete course session offerings</string>
+    <string name="delete_course_prerequisites">delete course prerequisites</string>
+    <string name="enter_new_offering_here">enter new offering here</string>
+    <string name="enter_new_course_code_here">enter new course code</string>
+    <string name="enter_new_prerequisites_here">enter new prerequisites</string>
+    <string name="enter_new_course_name_here">enter new course name</string>
+    <string name="prerequisites">prerequisites</string>
+    <string name="modify_prerequisites">modify prerequisites</string>
+    <string name="modify_session_offering">modify session offering</string>
+    <string name="modify_course_code">modify course code</string>
+    <string name="modify_course_name">modify course name</string>
+    <string name="enter_old_offering_here">enter old offering here</string>
+    <string name="enter_old_prerequisites_here">enter old prerequisites here</string>
 </resources>
