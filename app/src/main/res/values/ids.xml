@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="enterDetailInsCD2" type="id" />
+    <item name="new_course" type="id" />
+    <item name="oldPreq" type="id" />
+    <item name="newPreq" type="id" />
+</resources>
