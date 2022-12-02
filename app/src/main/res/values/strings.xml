@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RecyclerView2</string>
+    <string name="offeringsession">OfferingSession</string>
+    <string name="button">SAVE</string>
+    <string name="Banner">Add Taken Courses</string>
+    <string name="coursecode">CourseCode</string>
+</resources>

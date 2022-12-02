@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "65820152956",
+    "firebase_url": "https://course-planner-14-default-rtdb.firebaseio.com",
+    "project_id": "course-planner-14",
+    "storage_bucket": "course-planner-14.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65820152956:android:e3820d1950dc5321dba5f9",
+        "android_client_info": {
+          "package_name": "com.example.b07"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "65820152956-b9p2lfu98tpn7a5ni1i06ef25ui5mceu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgJV33hQbCVqWxV5O3RbMRdagRAlTZw54"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "65820152956-b9p2lfu98tpn7a5ni1i06ef25ui5mceu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65820152956:android:c2b1ec7aa2ab2fb5dba5f9",
+        "android_client_info": {
+          "package_name": "com.example.recyclerview2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "65820152956-b9p2lfu98tpn7a5ni1i06ef25ui5mceu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgJV33hQbCVqWxV5O3RbMRdagRAlTZw54"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "65820152956-b9p2lfu98tpn7a5ni1i06ef25ui5mceu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:65820152956:android:d9881270f0c49410dba5f9",
+        "android_client_info": {
+          "package_name": "com.example.userstories2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "65820152956-b9p2lfu98tpn7a5ni1i06ef25ui5mceu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgJV33hQbCVqWxV5O3RbMRdagRAlTZw54"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "65820152956-b9p2lfu98tpn7a5ni1i06ef25ui5mceu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
