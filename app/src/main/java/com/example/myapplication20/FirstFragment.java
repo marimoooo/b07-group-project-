@@ -22,7 +22,7 @@ public class FirstFragment extends Fragment {
     private FragmentFirstBinding binding;
     TextView oldCourseCode, newCourseCode, newCourseName, newOffering, newPreq;
     DatabaseReference databaseRef;
-
+//ok
     @Override
     public View onCreateView(
             @NonNull LayoutInflater inflater, ViewGroup container,
