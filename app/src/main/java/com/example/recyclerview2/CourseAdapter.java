@@ -15,7 +15,7 @@ public class CourseAdapter extends ArrayAdapter<Course> {
 
     private static class ViewHolder{
         TextView tvCode;
-        TextView tvName;
+        TextView tvSession;
 
     }
     private int resource;
@@ -35,7 +35,7 @@ public class CourseAdapter extends ArrayAdapter<Course> {
             convertView = LayoutInflater.from(getContext()).inflate(resource,parent,false);
             holder = new ViewHolder();
             holder.tvCode = (TextView) convertView.findViewById(R.id.tvCode);
-            holder.tvName = (TextView) convertView.findViewById(R.id.tvName);
+            holder.tvSession = (TextView) convertView.findViewById(R.id.tvSession);
             convertView.setTag(convertView);
         }
         else{
@@ -43,7 +43,7 @@ public class CourseAdapter extends ArrayAdapter<Course> {
         }
 
         holder.tvCode.setText(course.code);
-        holder.tvName.setText(course.name);
+        holder.tvSession.setText(course.session);
 
         return convertView;
     }

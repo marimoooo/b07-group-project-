@@ -1,16 +1,20 @@
 package com.example.recyclerview2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Course {
     public String code;
-    public String name;
+    public String session;
+    public List<String> prerequisite;
 
     public Course(){
-
+        prerequisite = new ArrayList<>();
     }
 
-    public Course(String code, String name){
+    public Course(String code, String session){
         this.code = code;
-        this.name = name;
+        this.session = session;
     }
 
     public String getCode() {
@@ -18,6 +22,6 @@ public class Course {
     }
 
     public String getName() {
-        return name;
+        return session;
     }
 }

@@ -19,14 +19,10 @@ public class DisplayActivity extends AppCompatActivity {
 
     FirebaseDatabase data;
     DatabaseReference reference;
-    List<Course> courses = new ArrayList<Course>();
+    List<Course> courses = new ArrayList<>();
     Course theCourse;
-
-
     //userinfo= course_item
     //listview=courseList
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
