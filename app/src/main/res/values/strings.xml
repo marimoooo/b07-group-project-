@@ -6,8 +6,8 @@
         <item>Summer</item>
     </string-array>
     <string-array name="courselist">
-    <item>C1</item>
-    <item>C2</item>
-    <item>C3</item>
+        <item>C1</item>
+        <item>C2</item>
+        <item>C3</item>
     </string-array>
 </resources>
