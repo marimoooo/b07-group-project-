@@ -45,13 +45,13 @@
         android:layout_marginEnd="123dp"
         android:layout_marginBottom="70dp"
         android:text="Modify Courses"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintBottom_toTopOf="@+id/button431"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/admin_course_add" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/button431"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="98dp"
@@ -75,5 +75,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button4" />
+        app:layout_constraintTop_toBottomOf="@+id/button431" />
 </androidx.constraintlayout.widget.ConstraintLayout>

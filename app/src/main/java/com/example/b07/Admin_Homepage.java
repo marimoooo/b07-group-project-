@@ -16,6 +16,7 @@ public class Admin_Homepage extends AppCompatActivity {
 
         Button go_to_admin_course_addition = findViewById(R.id.admin_course_add);
         Button sign_out = findViewById(R.id.sign_out);
+        Button see_database = findViewById(R.id.button431);
 
         go_to_admin_course_addition.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,6 +29,13 @@ public class Admin_Homepage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Admin_Homepage.this, Login.class));
+            }
+        });
+
+        see_database.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Admin_Homepage.this, Database_search.class));
             }
         });
     }

@@ -32,35 +32,12 @@ import java.util.Objects;
 
 public class Admin_course_addition extends AppCompatActivity {
 
-
-//    Spinner s1;
-//    List<String> items1;
-//
-//
-//    private Button first_to_second;
-//
-//    Spinner s2;
-//    List<String> items2;
-//
-//    //    public ListView listView;
-//    ArrayList<String> listView = new ArrayList<>();
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_admin_coourse_addition);
-//    }
-
     Spinner s1;
     List<String> items1;
-
-
-    private Button first_to_second;
 
     Spinner s2;
     List<String> items2;
 
-    //    public ListView listView;
     ArrayList<String> listView = new ArrayList<>();
 
     @Override
@@ -81,24 +58,20 @@ public class Admin_course_addition extends AppCompatActivity {
             }
         });
 
-
         super.onCreate(savedInstanceState);
 
         final String[] sq = new String[1];
         final String[] pq = new String[1];
 
-//        s1 = findViewById(R.id.dropdownmenu);
         s2 = findViewById(R.id.dropdownmenuq);
 
         items1 = new ArrayList<>();
         items2 = new ArrayList<>();
 
-        // The Course Offering schedule
         items1.add("Fall");
         items1.add("Winter");
         items1.add("Summer");
 
-        // The Course Pre-req (to be defined)
         items2.add("--select--");
         items2.add("CSCA08");
         items2.add("CSCA48");
@@ -117,26 +90,11 @@ public class Admin_course_addition extends AppCompatActivity {
 
         s2.setAdapter(new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, items2));
 
-//        s1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//
-//            @Override
-//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//                String item = items1.get(i);
-//                sq[0] = item;
-//            }
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
-//
-//            }
-//        });
-
-
         CheckBox c4 = findViewById(R.id.checkBox4);
         CheckBox c2 = findViewById(R.id.checkBox2);
         CheckBox c3 = findViewById(R.id.checkBox3);
 
         final String[] d = {""};
-
 
         final String[] k = {""};
 
@@ -157,12 +115,8 @@ public class Admin_course_addition extends AppCompatActivity {
             }
         });
 
-        // Firebase thing by member 1
         final EditText edit_course_name = findViewById(R.id.editTextTextPersonName3);
         final EditText edit_course_code = findViewById(R.id.editTextTextPersonName2);
-//        final View edit_course_offering = findViewById(R.id.dropdownmenu);
-//        final View edit_course_pre_req = findViewById(R.id.dropdownmenuq);
-
         listView.add(edit_course_code.getText().toString());
 
         Button btn = findViewById(R.id.button_first);
@@ -192,9 +146,7 @@ public class Admin_course_addition extends AppCompatActivity {
                 Toast.makeText(this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
             });
         });
-//        items2.add("hola" + edit_course_code.getText().toString());
-        first_to_second = findViewById(R.id.move);
-//        first_to_second.setOnClickListener(new View.OnClickListener() {
+        Button first_to_second = findViewById(R.id.move);
 //            @Override
 //            public void onClick(View v) {
 ////                first_to_second.setVisibility(View.GONE);
