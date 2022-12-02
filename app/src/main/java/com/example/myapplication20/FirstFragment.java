@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
+//ok
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 //import androidx.navigation.fragment.NavHostFragment;
