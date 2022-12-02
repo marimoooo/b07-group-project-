@@ -20,11 +20,14 @@ import com.google.firebase.database.ValueEventListener;
     public class Login extends AppCompatActivity {
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference();
+        private Button go_to_admin_course_addition;
 
         @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        go_to_admin_course_addition = findViewById(R.id.admin_course_add);
 
         final EditText username = findViewById(R.id.username);
         final EditText password = findViewById(R.id.password);
@@ -114,6 +117,12 @@ import com.google.firebase.database.ValueEventListener;
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Login.this, Signup.class));
+            }
+        });
+        go_to_admin_course_addition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Login.this, Admin_course_addition.class));
             }
         });
     }

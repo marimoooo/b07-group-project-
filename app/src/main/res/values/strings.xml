@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">B07</string>
+    <string-array name="dropdownmenu">
+        <item>Fall</item>
+        <item>Winter</item>
+        <item>Summer</item>
+    </string-array>
+    <string-array name="courselist">
+    <item>C1</item>
+    <item>C2</item>
+    <item>C3</item>
+    </string-array>
 </resources>
