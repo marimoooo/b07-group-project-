@@ -43,7 +43,7 @@ public class Admin_Homepage extends AppCompatActivity {
         go_to_course_modification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Admin_Homepage.this, Course_modification.class));
+                startActivity(new Intent(Admin_Homepage.this, MainActivity2.class));
             }
         });
     }

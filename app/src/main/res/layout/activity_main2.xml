@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity2">
+    <TextView
+        android:id="@+id/enterDetailInsCD2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="@string/enter_course_details"
+        android:textColor="#2CA31F"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/newPreq"
+        android:layout_width="161dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="60dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="enter new prerequisites"
+        android:inputType="textPersonName"
+        android:text=""
+        android:textColor="#4E4646"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:id="@+id/old"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="152dp"
+        android:text="original course"
+        android:textColor="#47A53E"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/newOffering"
+        android:layout_width="161dp"
+        android:layout_height="48dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="enter new offering"
+        android:inputType="textPersonName"
+        android:text=""
+        android:textAlignment="center"
+        android:textColor="#4E4646"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/newPreq"
+        app:layout_constraintEnd_toStartOf="@+id/button_modify_offering"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newCourseCode"
+        tools:ignore="LabelFor" />
+
+    <Button
+        android:id="@+id/button_modify_name"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="#8BC34A"
+        android:text="modify course name"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.924"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oldCourseCode" />
+
+    <EditText
+        android:id="@+id/newCourseCode"
+        android:layout_width="161dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="64dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="enter new coursecode "
+        android:inputType="textPersonName"
+        android:text=""
+        android:textAlignment="center"
+        android:textColor="#4E4646"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/button_modify_course_code"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newCourseName"
+        tools:ignore="LabelFor" />
+
+    <Button
+        android:id="@+id/button_modify_course_code"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#8BC34A"
+        android:text="modify course code"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.924"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_modify_name"
+        app:layout_constraintVertical_bias="0.188" />
+
+    <EditText
+        android:id="@+id/newCourseName"
+        android:layout_width="155dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="enter new course name here"
+        android:inputType="textPersonName"
+        android:text=""
+        android:textColor="#4E4646"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new_course"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:id="@+id/new_course"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="252dp"
+        android:text="new course"
+        android:textColor="#47A53E"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/oldCourseCode"
+        android:layout_width="219dp"
+        android:layout_height="48dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="enter course code here"
+        android:inputType="textPersonName"
+        android:text=""
+        android:textColor="#4E4646"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/old"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:id="@+id/instructionCD2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="please fill in the following details to modify a existing course"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterDetailInsCD2" />
+
+    <Button
+        android:id="@+id/button_modify_offering"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#8BC34A"
+        android:text="modify session offering"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/button_modify_preq"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.933"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_modify_course_code" />
+
+    <Button
+        android:id="@+id/button_modify_preq"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:backgroundTint="#8BC34A"
+        android:text="modify prerequisites"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.924"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
