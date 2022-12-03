@@ -34,9 +34,10 @@ public class AddActivity extends AppCompatActivity {
         tvTitle = findViewById(R.id.tvTitle);
 
 
-        data = FirebaseDatabase.getInstance();
-        String name = "abc";
-        ref = data.getReference("students").child(name).child("takenCourse");
+        data = FirebaseDatabase.getInstance("https://cscb07-project-ba4c9-default-rtdb.firebaseio.com\n" +
+                "\n");
+        String name = "student";
+        ref = data.getReference("students").child(name).child("courses");
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
