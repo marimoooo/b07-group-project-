@@ -44,7 +44,7 @@ public class AddActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String code = CourseCode.getText().toString();
                 String session = OfferingSession.getText().toString();
-                Course course = new Course(code,session);
+                Course course = new Course(code,session,name);
                 ref.setValue(course).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {

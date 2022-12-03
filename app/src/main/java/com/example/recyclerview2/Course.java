@@ -6,6 +6,7 @@ import java.util.List;
 public class Course {
     public String code;
     public String session;
+    public String name;
     public List<String> preq;
 
     public Course(){
@@ -13,9 +14,10 @@ public class Course {
 
     }
 
-    public Course(String code, String session){
+    public Course(String code, String session, String name){
         this.code = code;
         this.session = session;
+        this.name = name;
     }
 
 }
