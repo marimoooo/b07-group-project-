@@ -83,8 +83,27 @@ public class MainActivity2 extends AppCompatActivity {
         Button buttonModifyName = findViewById(R.id.button_modify_name);
         buttonModifyName.setOnClickListener(v -> {
             String code=oldCourseCode.getText().toString();
+            String newName = newCourseName.getText().toString();
             Toast.makeText(MainActivity2.this, "Log " + code, Toast.LENGTH_SHORT).show();
-            databaseRef.child("Course details").child(code).child("Course Name").setValue(newCourseName.getText().toString());
+            //set new name on the admin side
+            databaseRef.child("Course details").child(code).child("Course Name").setValue(newName);
+            DatabaseReference reference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("students");
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+//                        Toast.makeText(MainActivity2.this, "$$$" + Objects.requireNonNull(snapshot.child("courses")), Toast.LENGTH_SHORT).show();
+                        HashMap hashMap2 = new HashMap();
+                        hashMap2.put("name", newName);
+                        databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(""+code+"").updateChildren(hashMap2);
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
         });
         Button buttonModifyCourseCode = findViewById(R.id.button_modify_course_code);
         buttonModifyCourseCode.setOnClickListener(v -> {
@@ -146,7 +165,6 @@ public class MainActivity2 extends AppCompatActivity {
 
             DatabaseReference reference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("students");
 //                Toast.makeText(MainActivity3.this, "$$$", Toast.LENGTH_SHORT).show();
-
             reference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -158,24 +176,39 @@ public class MainActivity2 extends AppCompatActivity {
                         hashMap2.put("code", newCourseCode.getText().toString());
                         databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(""+newCourseCode.getText().toString()+"").updateChildren(hashMap2);
                         databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(""+code+"").setValue(null);
-
-
-//                            Toast.makeText(Admin_course_addition.this, "" + snapshot.child("Course Code").getValue().toString() + "is added to the course pre-req.", Toast.LENGTH_SHORT).show();
-//                    list.add(snapshot.getValue().toString());
                     }
                 }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
 
+                }
+            });
+        });
+        Button buttonModifyOffering = findViewById(R.id.button_modify_offering);
+        buttonModifyOffering.setOnClickListener(v -> {
+            String code=oldCourseCode.getText().toString();
+            String offernew = newOffering.getText().toString();
+            //change the session offering in the admin list
+            databaseRef.child("Course details").child(code).child("Session").setValue(offernew);
+            //databaseRef.child("Course details").child(code).child("Course Code").setValue(newCourseCode.getText().toString());
+            DatabaseReference reference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("students");
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+//                        Toast.makeText(MainActivity2.this, "$$$" + Objects.requireNonNull(snapshot.child("courses")), Toast.LENGTH_SHORT).show();
+                        HashMap hashMap2 = new HashMap();
+                        hashMap2.put("Session", offernew);
+                        databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(""+code+"").updateChildren(hashMap2);
+                        //databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(""+code+"").setValue(null);
+                    }
+                }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
                 }
             });
 
-        });
-        Button buttonModifyOffering = findViewById(R.id.button_modify_offering);
-        buttonModifyOffering.setOnClickListener(v -> {
-            String code=oldCourseCode.getText().toString();
-            databaseRef.child("Course details").child(code).child("Session").setValue(newOffering.getText().toString());
         });
         Button buttonModifyPreq = findViewById(R.id.button_modify_preq);
         buttonModifyPreq.setOnClickListener(v -> {

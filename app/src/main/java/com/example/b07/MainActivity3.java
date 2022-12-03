@@ -81,3 +81,24 @@ public class MainActivity3 extends AppCompatActivity {
         });
     }
 }
+
+
+
+
+//  DatabaseReference reference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("students");
+//reference.addValueEventListener(new ValueEventListener() {
+//@Override
+//
+//public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//        for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+////                        Toast.makeText(MainActivity2.this, "$$$" + Objects.requireNonNull(snapshot.child("courses")), Toast.LENGTH_SHORT).show();
+//        HashMap hashMap2 = new HashMap();
+//        hashMap2.put("name", newName);
+//        databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(""+code+"").updateChildren(hashMap2);
+//        }
+//        }
+//@Override
+//public void onCancelled(@NonNull DatabaseError error) {
+//
+//        }
+//        });
