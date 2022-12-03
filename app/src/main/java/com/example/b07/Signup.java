@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Signup extends AppCompatActivity {
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference();
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://cscb07-project-ba4c9-default-rtdb.firebaseio.com/").getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
