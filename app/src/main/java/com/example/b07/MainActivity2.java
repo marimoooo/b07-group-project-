@@ -87,7 +87,62 @@ public class MainActivity2 extends AppCompatActivity {
         Button buttonModifyCourseCode = findViewById(R.id.button_modify_course_code);
         buttonModifyCourseCode.setOnClickListener(v -> {
             String code=oldCourseCode.getText().toString();
-            databaseRef.child("Course details").child(code).child("Course Code").setValue(newCourseCode.getText().toString());
+            String newCode=newCourseCode.getText().toString();
+            // String name, offering, preq;
+            HashMap hashMap=new HashMap();
+            hashMap.put("Course Code", newCode);
+            databaseRef.child("Course details").child(newCode).updateChildren(hashMap);
+            //String name;
+            databaseRef.child("Course details").child(code).child("Course Name").get( ).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                    }
+                    else {
+                        Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                        String name = task.getResult().getValue().toString();
+                        HashMap hashMap2 = new HashMap();
+                        hashMap2.put("Course Name", name);
+                        databaseRef.child("Course details").child(newCode).updateChildren(hashMap2);
+                    }
+                }
+            });
+            databaseRef.child("Course details").child(code).child("Course Pre-requisites").get( ).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                    }
+                    else {
+                        Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                        String preq = task.getResult().getValue().toString();
+                        HashMap hashMap2 = new HashMap();
+                        hashMap2.put("Course Pre-requisites", preq);
+                        databaseRef.child("Course details").child(newCode).updateChildren(hashMap2);
+                    }
+                }
+            });
+            databaseRef.child("Course details").child(code).child("Session").get( ).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                    }
+                    else {
+                        Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                        String offering = task.getResult().getValue().toString();
+                        HashMap hashMap2 = new HashMap();
+                        hashMap2.put("Session", offering);
+                        databaseRef.child("Course details").child(newCode).updateChildren(hashMap2);
+                    }
+                }
+            });
+            //delete old course
+            databaseRef.child("Course details").child(code).setValue(null);
+
+
+            //databaseRef.child("Course details").child(code).child("Course Code").setValue(newCourseCode.getText().toString());
             DatabaseReference reference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("students");
 //                Toast.makeText(MainActivity3.this, "$$$", Toast.LENGTH_SHORT).show();
 
