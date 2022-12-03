@@ -1,6 +1,7 @@
 package com.example.myapplication20;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,13 @@ import androidx.fragment.app.Fragment;
 //import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.myapplication20.databinding.FragmentFirstBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
@@ -22,6 +28,8 @@ public class FirstFragment extends Fragment {
     private FragmentFirstBinding binding;
     TextView oldCourseCode, newCourseCode, newCourseName, newOffering, newPreq;
     DatabaseReference databaseRef;
+    DatabaseReference reference;
+    FirebaseDatabase data;
 //ok
     @Override
     public View onCreateView(
@@ -30,7 +38,8 @@ public class FirstFragment extends Fragment {
     ) {
 
         databaseRef = FirebaseDatabase.getInstance().getReference();
-
+        data = FirebaseDatabase.getInstance();
+        //data = FirebaseDatabase.getInstance("https://cscb07-project-ba4c9-default-rtdb.firebaseio.com");
         HashMap hashMap=new HashMap();
         hashMap.put("Course Name", "intro to cs2");
         hashMap.put("Course Code", "cscb48");
@@ -56,14 +65,122 @@ public class FirstFragment extends Fragment {
             databaseRef.child("Course_details").child(code).updateChildren(hashMap);
         });
 
+
+
         ////come back to this////
         binding.buttonModifyCourseCode.setOnClickListener(view1 -> {
             String code=binding.oldCourseCode.getText().toString();
             String newCode=binding.newCourseCode.getText().toString();
 
+            // String name, offering, preq;
             HashMap hashMap=new HashMap();
             hashMap.put("Course Code", newCode);
-            databaseRef.child("Course_details").child(code).updateChildren(hashMap);
+            databaseRef.child("Course_details").child(newCode).updateChildren(hashMap);
+            //String name;
+
+            databaseRef.child("Course_details").child(code).child("Course Name").get( ).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                    }
+                    else {
+                        Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                        String name = task.getResult().getValue().toString();
+                        HashMap hashMap2 = new HashMap();
+                        hashMap2.put("Course Name", name);
+                        databaseRef.child("Course_details").child(newCode).updateChildren(hashMap2);
+                    }
+                }
+            });
+
+            databaseRef.child("Course_details").child(code).child("Course Pre_requisites").get( ).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                    }
+                    else {
+                        Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                        String preq = task.getResult().getValue().toString();
+                        HashMap hashMap2 = new HashMap();
+                        hashMap2.put("Course Pre_requisites", preq);
+                        databaseRef.child("Course_details").child(newCode).updateChildren(hashMap2);
+                    }
+                }
+            });
+
+            databaseRef.child("Course_details").child(code).child("Course Offerings").get( ).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                    }
+                    else {
+                        Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                        String offering = task.getResult().getValue().toString();
+                        HashMap hashMap2 = new HashMap();
+                        hashMap2.put("Course Offerings", offering);
+                        databaseRef.child("Course_details").child(newCode).updateChildren(hashMap2);
+                    }
+                }
+            });
+
+
+
+//            reference = data.getReference("Course_details").child(code).child("Course Name");
+//            reference.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        String name = snapshot.getValue(String.class);
+//                        HashMap hashMap2 = new HashMap();
+//                        hashMap2.put("Course Name", name);
+//                        databaseRef.child("Course_details").child(newCode).updateChildren(hashMap2);
+//                }
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//
+//                }
+//            });
+//            reference = data.getReference("Course_details").child(code).child("Course Pre_requisites");
+//            reference.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    for(DataSnapshot shot:snapshot.getChildren()) {
+//                        String preq = shot.getValue(String.class);
+//                        HashMap hashMap2=new HashMap();
+//                        hashMap2.put("Course Pre_requisites", preq);
+//
+//                        databaseRef.child("Course_details").child(newCode).updateChildren(hashMap2);
+//                    }
+//                }
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//
+//                }
+//            });
+//            reference = data.getReference("Course_details").child(code).child("Course Offerings");
+//            reference.addValueEventListener(new ValueEventListener() {
+//                @Override
+//                public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                    for(DataSnapshot shot:snapshot.getChildren()) {
+//                        String offerings = shot.getValue(String.class);
+//                        HashMap hashMap2=new HashMap();
+//                        hashMap2.put("Course Offerings", offerings);
+//
+//                        databaseRef.child("Course_details").child(newCode).updateChildren(hashMap2);
+//                    }
+//                }
+//                @Override
+//                public void onCancelled(@NonNull DatabaseError error) {
+//
+//                }
+//            });
+
+            //delete old course
+            databaseRef.child("Course_details").child(code).setValue(null);
+
+
         });
 
         binding.buttonModifyOffering.setOnClickListener(view13 -> {
