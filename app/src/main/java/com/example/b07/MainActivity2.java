@@ -26,9 +26,13 @@ import com.example.b07.databinding.ActivityMain2Binding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.HashMap;
+import java.util.Objects;
 
 public class MainActivity2 extends AppCompatActivity {
 
@@ -84,6 +88,27 @@ public class MainActivity2 extends AppCompatActivity {
         buttonModifyCourseCode.setOnClickListener(v -> {
             String code=oldCourseCode.getText().toString();
             databaseRef.child("Course details").child(code).child("Course Code").setValue(newCourseCode.getText().toString());
+            DatabaseReference reference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("students");
+//                Toast.makeText(MainActivity3.this, "$$$", Toast.LENGTH_SHORT).show();
+
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+//                        Toast.makeText(MainActivity2.this, "$$$" + Objects.requireNonNull(snapshot.child("courses")), Toast.LENGTH_SHORT).show();
+                        databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(""+code+"").setValue(newCourseCode.getText().toString());
+
+//                            Toast.makeText(Admin_course_addition.this, "" + snapshot.child("Course Code").getValue().toString() + "is added to the course pre-req.", Toast.LENGTH_SHORT).show();
+//                    list.add(snapshot.getValue().toString());
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
         });
         Button buttonModifyOffering = findViewById(R.id.button_modify_offering);
         buttonModifyOffering.setOnClickListener(v -> {

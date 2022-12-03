@@ -16,6 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
 public class MainActivity3 extends AppCompatActivity {
 
     DatabaseReference databaseRef;
@@ -56,16 +58,15 @@ public class MainActivity3 extends AppCompatActivity {
 //                databaseRef.child("students").child("takenCourse").child("course01").removeValue();
 
                 DatabaseReference reference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("students");
+//                Toast.makeText(MainActivity3.this, "$$$", Toast.LENGTH_SHORT).show();
+
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-                            String x = snapshot.child("takenCourse").getKey();
-                            assert x != null;
-                            if(dataSnapshot.child(x).toString().equals("course01")){
-                                Toast.makeText(MainActivity3.this, "$$$]" +
-                                        "", Toast.LENGTH_SHORT).show();
-                            }
+                            Toast.makeText(MainActivity3.this, "$$$" + Objects.requireNonNull(snapshot.child("courses")), Toast.LENGTH_SHORT).show();
+                            databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(""+code+"").removeValue();
+
 //                            Toast.makeText(Admin_course_addition.this, "" + snapshot.child("Course Code").getValue().toString() + "is added to the course pre-req.", Toast.LENGTH_SHORT).show();
 //                    list.add(snapshot.getValue().toString());
                         }
