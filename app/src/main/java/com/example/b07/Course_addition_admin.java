@@ -3,6 +3,7 @@ package com.example.b07;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -20,7 +21,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.b07.databinding.ActivityAdminCourseAdditionBinding;
+import com.example.b07.databinding.ActivityCourseAdditionAdminBinding;
 import com.example.b07.databinding.ActivityMainBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,23 +30,36 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class Admin_course_addition extends AppCompatActivity {
+public class Course_addition_admin extends AppCompatActivity {
+
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_course_addition_admin);
+//    }
+
+//    private AppBarConfiguration appBarConfiguration;
 
     Spinner s1;
     List<String> items1;
 
+
+    private Button first_to_second;
+
     Spinner s2;
     List<String> items2;
 
+    //    public ListView listView;
     ArrayList<String> listView = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        ArrayList<String> list = new ArrayList<>();
-//        DatabaseReference reference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference();
+//        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 //        reference.addValueEventListener(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -60,7 +74,13 @@ public class Admin_course_addition extends AppCompatActivity {
 //            }
 //        });
 
+
         super.onCreate(savedInstanceState);
+
+        com.example.b07.databinding.ActivityCourseAdditionAdminBinding binding = ActivityCourseAdditionAdminBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+//        setSupportActionBar(binding.toolbar);
+
         final String[] sq = new String[1];
         final String[] pq = new String[1];
 
@@ -74,13 +94,15 @@ public class Admin_course_addition extends AppCompatActivity {
         items1.add("Fall");
         items1.add("Winter");
         items1.add("Summer");
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Course details");
+        final String[] z = {""};
+        DatabaseReference reference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("Course details");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
                     items2.add(snapshot.child("Course Code").getValue().toString());
-                    Toast.makeText(Admin_course_addition.this, "" + snapshot.child("Course Code").getValue().toString() + "is added to the course pre-req.", Toast.LENGTH_SHORT).show();
+                    z[0] = z[0] + snapshot.child("Course Code").getValue().toString();
+                    Toast.makeText(Course_addition_admin.this, "" + snapshot.child("Course Code").getValue().toString() + "is added to the course pre-req.", Toast.LENGTH_SHORT).show();
 //                    list.add(snapshot.getValue().toString());
                 }
             }
@@ -92,27 +114,28 @@ public class Admin_course_addition extends AppCompatActivity {
         });
         // The Course Pre-req (to be defined)
         items2.add("--select--");
-        items2.add("CSCA08");
-        items2.add("CSCA48");
-        items2.add("CSCB07");
-        items2.add("CSCB09");
-        items2.add("CSCB58");
-        items2.add("CSCB36");
-        items2.add("CSCB63");
-        items2.add("MATA22");
-        items2.add("MATA31");
-        items2.add("CSCA67");
-        items2.add("MATA37");
-        items2.add("MATB41");
-        items2.add("STAB52");
-        items2.add("MATB24");
+//        items2.add(Arrays.toString(z));
+//        items2.add("CSCA48");
+//        items2.add("CSCB07");
+//        items2.add("CSCB09");
+//        items2.add("CSCB58");
+//        items2.add("CSCB36");
+//        items2.add("CSCB63");
+//        items2.add("MATA22");
+//        items2.add("MATA31");
+//        items2.add("CSCA67");
+//        items2.add("MATA37");
+//        items2.add("MATB41");
+//        items2.add("STAB52");
+//        items2.add("MATB24");
 
-        if(s2 == null || items2 == null || androidx.appcompat.R.layout.support_simple_spinner_dropdown_item == 0) {
+        if(items2 == null) {
             // Do something
         } else {
             // Do something else
             s2.setAdapter(new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, items2));
         }
+
 //        s1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 //
 //            @Override
@@ -136,35 +159,35 @@ public class Admin_course_addition extends AppCompatActivity {
 
         final String[] k = {""};
 
-        if(s2 != null) {
-            s2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-                @Override
-                public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                    String item = items2.get(i);
-                    if (!Objects.equals(item, "--select--")) {
-                        if (!Objects.equals(k[0], "")) k[0] = k[0] + ",";
-                        k[0] = k[0] + item;
-                        Toast.makeText(Admin_course_addition.this, "" + item + "is added to the course pre-req.", Toast.LENGTH_SHORT).show();
-                    }
-                }
+        s2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-                @Override
-                public void onNothingSelected(AdapterView<?> adapterView) {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String item = items2.get(i);
+                if(!Objects.equals(item, "--select--")){
+                    if(!Objects.equals(k[0], "")) k[0] = k[0] + ",";
+                    k[0] = k[0] + item;
+                    Toast.makeText(Course_addition_admin.this, "" + item + "is added to the course pre-req.", Toast.LENGTH_SHORT).show();}
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-                }
-            });
-        }
+            }
+        });
+
         // Firebase thing by member 1
         final EditText edit_course_name = findViewById(R.id.editTextTextPersonName3);
         final EditText edit_course_code = findViewById(R.id.editTextTextPersonName2);
 //        final View edit_course_offering = findViewById(R.id.dropdownmenu);
 //        final View edit_course_pre_req = findViewById(R.id.dropdownmenuq);
 
+        listView.add(edit_course_code.getText().toString());
+
         Button btn = findViewById(R.id.button_first);
 
         DAOCourseAddition dao = new DAOCourseAddition();
-        if(btn != null){
+
         btn.setOnClickListener(v->
         {
             if(c2.isChecked()){
@@ -180,23 +203,21 @@ public class Admin_course_addition extends AppCompatActivity {
                 d[0] = d[0] + "Summer";
             }
             Course_details emp = new Course_details(edit_course_name.getText().toString(), edit_course_code.getText().toString(), d[0], k[0]);
+            d[0] = "";
             dao.add(emp).addOnSuccessListener(suc->
             {
-                d[0] = "";
-                k[0] = "";
                 Toast.makeText(this, edit_course_code.getText().toString() + " is added!", Toast.LENGTH_SHORT).show();
-//                emp.setCourse_pre_req("");
-//                Toast.makeText(Admin_course_addition.this, "$$$" + emp.getCourse_pre_req().toString() + "$$$", Toast.LENGTH_SHORT).show();
+                emp.setCourse_pre_req("");
+//                Toast.makeText(Course_addition_admin.this, "$$$" + emp.getCourse_pre_req().toString() + "$$$", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Course_addition_admin.this, Admin_Homepage.class));
             }).addOnFailureListener(er->
             {
                 Toast.makeText(this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
             });
-
         });
-        }
-        Button first_to_second = findViewById(R.id.move);
-
-
+//        items2.add("hola" + edit_course_code.getText().toString());
+        first_to_second = findViewById(R.id.move);
+//        first_to_second.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 ////                first_to_second.setVisibility(View.GONE);
@@ -207,6 +228,33 @@ public class Admin_course_addition extends AppCompatActivity {
 //        });
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+//    @Override
+//    public boolean onSupportNavigateUp() {
+//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+//        return NavigationUI.navigateUp(navController, appBarConfiguration)
+//                || super.onSupportNavigateUp();
+//    }
 
 //    int year_setter = 0;
 //    int session_setter = 0;
@@ -249,6 +297,5 @@ public class Admin_course_addition extends AppCompatActivity {
 //            t2v.setGravity(Gravity.CENTER);
 //            tbrow.addView(t2v);
 //            stk.addView(tbrow);
-//        }
-//    }
-}
+        }
+

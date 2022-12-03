@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">B07</string>
+    <!--    <string name="app_name">B07</string>-->
     <string-array name="dropdownmenu">
         <item>Fall</item>
         <item>Winter</item>
@@ -12,6 +12,34 @@
     </string-array>
     <string name="title_activity_xyz">xyz</string>
     <string name="large_text">
+        <string name="app_name">My Application2.0</string>
+        <!--    <string name="action_settings">Settings</string>-->
+        <!-- Strings used for fragments for navigation -->
+        <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="random_button_text">Random</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">0</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="toast_button_text">Toast</string>
+    <string name="count_button_text">Count</string>
+
+    <string name="enter_course_details">Enter Course details</string>
+    <string name="new_course">New Course</string>
+    <string name="enter_old_offering_here">enter old offering here</string>
+    <string name="enter_old_prerequisites_here">enter old prerequisites here</string>
+    <string name="enter_new_offering_here">enter new offering here</string>
+    <string name="enter_new_course_code_here">enter new course code</string>
+    <string name="enter_new_prerequisites_here">enter new prerequisites</string>
+    <string name="enter_new_course_name_here">enter new course name</string>
+    <string name="original_course1">Original Course</string>
+    <string name="modify_prerequisites">modify prerequisites</string>
+    <string name="modify_session_offering">modify session offering</string>
+    <string name="modify_course_code">modify course code</string>
+    <string name="modify_course_name">modify course name</string>
+    <string name="enter_course_code_here">enter course code</string>
+    <string name="please_fill_in_the_following_details_to_modify_a_existing_course">please fill in the following details to modify a existing course</string>
         "Material is the metaphor.\n\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
@@ -101,4 +129,5 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="action_settings">Settings</string>
+    <string name="enter_course_details">enter course details</string>
 </resources>

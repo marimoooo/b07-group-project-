@@ -121,7 +121,7 @@ import com.google.firebase.database.ValueEventListener;
         go_to_admin_course_addition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Login.this, Database_search.class));
+                startActivity(new Intent(Login.this, Student_home_page.class));
             }
         });
     }

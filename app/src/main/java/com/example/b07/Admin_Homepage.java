@@ -21,7 +21,7 @@ public class Admin_Homepage extends AppCompatActivity {
         go_to_admin_course_addition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Admin_Homepage.this, Admin_course_addition.class));
+                startActivity(new Intent(Admin_Homepage.this, Course_addition_admin.class));
             }
         });
 
@@ -36,6 +36,14 @@ public class Admin_Homepage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Admin_Homepage.this, Database_search.class));
+            }
+        });
+
+        Button go_to_course_modification = findViewById(R.id.button2);
+        go_to_course_modification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Admin_Homepage.this, Course_modification.class));
             }
         });
     }
