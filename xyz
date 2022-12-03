@@ -1,6 +1,0 @@
-CheckBox c4 = findViewById(R.id.checkBox4);
-CheckBox c2 = findViewById(R.id.checkBox2);
-CheckBox c3 = findViewById(R.id.checkBox3);
-
-final String[] d = {""};
-        
