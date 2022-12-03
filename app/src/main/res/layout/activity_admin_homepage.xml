@@ -57,7 +57,7 @@
         android:layout_marginStart="98dp"
         android:layout_marginEnd="92dp"
         android:layout_marginBottom="309dp"
-        android:text="See Student Database"
+        android:text="Delete courses"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
