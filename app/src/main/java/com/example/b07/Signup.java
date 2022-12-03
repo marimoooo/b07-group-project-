@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.database.DatabaseUtilsCompat;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Signup extends AppCompatActivity {
 
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference();
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://cscb07-project-ba4c9-default-rtdb.firebaseio.com/").getReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,10 +114,7 @@ public class Signup extends AppCompatActivity {
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                finish();
-            }
+            public void onClick(View view) {startActivity(new Intent(Signup.this, Login.class));}
         });
     }
-
 }

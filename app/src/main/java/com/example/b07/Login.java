@@ -1,4 +1,4 @@
-    package com.example.b07;
+package com.example.b07;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,72 +22,71 @@ import com.google.firebase.database.ValueEventListener;
         DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference();
 
         @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_login);
+            final EditText username = findViewById(R.id.username);
+            final EditText password = findViewById(R.id.password);
+            final Button studentLoginButton = findViewById(R.id.studentLoginButton);
+            final Button adminLoginButton = findViewById(R.id.adminLoginButton);
+            final TextView signupButton = findViewById(R.id.signUpButton);
 
-            Button go_to_admin_course_addition = findViewById(R.id.admin_course_add);
+            studentLoginButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    final String usernameText = username.getText().toString();
+                    final String passwordText = password.getText().toString();
 
-        final EditText username = findViewById(R.id.username);
-        final EditText password = findViewById(R.id.password);
-        final Button studentLoginButton = findViewById(R.id.studentLoginButton);
-        final Button adminLoginButton = findViewById(R.id.adminLoginButton);
-        final TextView signupButton = findViewById(R.id.signUpButton);
+                    if(usernameText.isEmpty() || passwordText.isEmpty()){
+                        Toast.makeText(Login.this, "Please enter your username or password", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        databaseReference.child("students").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if(snapshot.hasChild(usernameText)){
+                                    final String getPassword = snapshot.child(usernameText).child("password").getValue(String.class);
 
-        studentLoginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final String usernameText = username.getText().toString();
-                final String passwordText = password.getText().toString();
-
-                if(usernameText.isEmpty() || passwordText.isEmpty()){
-                    Toast.makeText(Login.this, "Please enter your username or password", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    databaseReference.child("students").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.hasChild(usernameText)){
-                                final String getPassword = snapshot.child(usernameText).child("password").getValue(String.class);
-
-                                if(getPassword.equals(passwordText)){
-                                    Toast.makeText(Login.this, "Log in successful", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(Login.this, MainActivity.class));
-                                    finish();
+                                    if(getPassword.equals(passwordText)){
+                                        Toast.makeText(Login.this, "Log in successful", Toast.LENGTH_SHORT).show();
+                                        Intent intent = new Intent(Login.this, student_main.class);
+                                        intent.putExtra("username", usernameText);
+                                        startActivity(intent);
+                                        finish();
+                                    }
+                                    else{
+                                        Toast.makeText(Login.this, "Password incorrect", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                                 else{
                                     Toast.makeText(Login.this, "Password incorrect", Toast.LENGTH_SHORT).show();
                                 }
                             }
-                            else{
-                                Toast.makeText(Login.this, "Password incorrect", Toast.LENGTH_SHORT).show();
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
                             }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
+                        });
+                    }
                 }
-            }
-        });
+            });
 
-        adminLoginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final String usernameText = username.getText().toString();
-                final String passwordText = password.getText().toString();
+            adminLoginButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    final String usernameText = username.getText().toString();
+                    final String passwordText = password.getText().toString();
 
-                if(usernameText.isEmpty() || passwordText.isEmpty()){
-                    Toast.makeText(Login.this, "Please enter your username or password", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    databaseReference.child("admins").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.hasChild(usernameText)){
-                                final String getPassword = snapshot.child(usernameText).child("password").getValue(String.class);
+                    if(usernameText.isEmpty() || passwordText.isEmpty()){
+                        Toast.makeText(Login.this, "Please enter your username or password", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        databaseReference.child("admins").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                if(snapshot.hasChild(usernameText)){
+                                    final String getPassword = snapshot.child(usernameText).child("password").getValue(String.class);
 
                                 if(getPassword.equals(passwordText)){
                                     Toast.makeText(Login.this, "Log in successful", Toast.LENGTH_SHORT).show();
@@ -103,26 +102,20 @@ import com.google.firebase.database.ValueEventListener;
                             }
                         }
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
 
-                        }
-                    });
+                            }
+                        });
+                    }
                 }
-            }
-        });
+            });
 
-        signupButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Login.this, Signup.class));
-            }
-        });
-        go_to_admin_course_addition.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Login.this, Student_home_page.class));
-            }
-        });
-    }
+            signupButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(Login.this, Signup.class));
+                }
+            });
+        }
 }

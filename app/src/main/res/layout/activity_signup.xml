@@ -13,7 +13,7 @@
         android:gravity="center"
         android:text="Sign up here"
         android:textColor="@color/black"
-        android:textSize="20dp"
+        android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/username"
         app:layout_constraintTop_toTopOf="parent"
@@ -83,10 +83,10 @@
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="190dp"
-        android:background="@color/cardview_light_background"
+        android:background="@color/grey"
         android:text="login"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/studentSignUpButton"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.97" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

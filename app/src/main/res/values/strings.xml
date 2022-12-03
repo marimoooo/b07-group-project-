@@ -5,14 +5,8 @@
         <item>Winter</item>
         <item>Summer</item>
     </string-array>
-    <string-array name="courselist">
-        <item>C1</item>
-        <item>C2</item>
-        <item>C3</item>
-    </string-array>
     <string name="title_activity_xyz">xyz</string>
     <string name="large_text">
-        <string name="app_name">My Application2.0</string>
         <!--    <string name="action_settings">Settings</string>-->
         <!-- Strings used for fragments for navigation -->
         <string name="first_fragment_label">First Fragment</string>
@@ -25,7 +19,6 @@
     <string name="toast_button_text">Toast</string>
     <string name="count_button_text">Count</string>
 
-    <string name="enter_course_details">Enter Course details</string>
     <string name="new_course">New Course</string>
     <string name="enter_old_offering_here">enter old offering here</string>
     <string name="enter_old_prerequisites_here">enter old prerequisites here</string>
@@ -130,4 +123,10 @@
     </string>
     <string name="action_settings">Settings</string>
     <string name="enter_course_details">enter course details</string>
+    <string name="app_name">B07</string>
+    <string-array name="courselist">
+        <item>C1</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
