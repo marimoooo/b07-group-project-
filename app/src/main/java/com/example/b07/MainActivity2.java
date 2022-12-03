@@ -39,6 +39,8 @@ public class MainActivity2 extends AppCompatActivity {
     private ActivityMain2Binding binding;
 //    TextView enteredCourseCode;
     DatabaseReference databaseRef;
+    String offering, preq, name;
+
 
 //    @Nullable
 //    @Override
@@ -101,7 +103,7 @@ public class MainActivity2 extends AppCompatActivity {
                     }
                     else {
                         Log.d("firebase", String.valueOf(task.getResult().getValue()));
-                        String name = task.getResult().getValue().toString();
+                        name = task.getResult().getValue().toString();
                         HashMap hashMap2 = new HashMap();
                         hashMap2.put("Course Name", name);
                         databaseRef.child("Course details").child(newCode).updateChildren(hashMap2);
@@ -116,7 +118,7 @@ public class MainActivity2 extends AppCompatActivity {
                     }
                     else {
                         Log.d("firebase", String.valueOf(task.getResult().getValue()));
-                        String preq = task.getResult().getValue().toString();
+                        preq = task.getResult().getValue().toString();
                         HashMap hashMap2 = new HashMap();
                         hashMap2.put("Course Pre-requisites", preq);
                         databaseRef.child("Course details").child(newCode).updateChildren(hashMap2);
@@ -131,7 +133,7 @@ public class MainActivity2 extends AppCompatActivity {
                     }
                     else {
                         Log.d("firebase", String.valueOf(task.getResult().getValue()));
-                        String offering = task.getResult().getValue().toString();
+                        offering = task.getResult().getValue().toString();
                         HashMap hashMap2 = new HashMap();
                         hashMap2.put("Session", offering);
                         databaseRef.child("Course details").child(newCode).updateChildren(hashMap2);
@@ -140,9 +142,8 @@ public class MainActivity2 extends AppCompatActivity {
             });
             //delete old course
             databaseRef.child("Course details").child(code).setValue(null);
-
-
             //databaseRef.child("Course details").child(code).child("Course Code").setValue(newCourseCode.getText().toString());
+
             DatabaseReference reference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("students");
 //                Toast.makeText(MainActivity3.this, "$$$", Toast.LENGTH_SHORT).show();
 
@@ -151,7 +152,13 @@ public class MainActivity2 extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for(DataSnapshot snapshot: dataSnapshot.getChildren()){
 //                        Toast.makeText(MainActivity2.this, "$$$" + Objects.requireNonNull(snapshot.child("courses")), Toast.LENGTH_SHORT).show();
-                        databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(""+code+"").setValue(newCourseCode.getText().toString());
+                        HashMap hashMap2 = new HashMap();
+                        hashMap2.put("Session", offering);
+                        hashMap2.put("name", name);
+                        hashMap2.put("code", newCourseCode.getText().toString());
+                        databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(""+newCourseCode.getText().toString()+"").updateChildren(hashMap2);
+                        databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(""+code+"").setValue(null);
+
 
 //                            Toast.makeText(Admin_course_addition.this, "" + snapshot.child("Course Code").getValue().toString() + "is added to the course pre-req.", Toast.LENGTH_SHORT).show();
 //                    list.add(snapshot.getValue().toString());
