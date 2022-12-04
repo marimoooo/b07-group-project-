@@ -1,0 +1,423 @@
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>plugins {\n    id 'com.android.application'\n}\n\nandroid {\n    namespace 'com.example.finaltimelinegenerator'\n    compileSdk 32\n\n    defaultConfig {\n        applicationId \"com.example.finaltimelinegenerator\"\n        minSdk 28\n        targetSdk 32\n        versionCode 1\n        versionName \"1.0\"\n\n        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\n    }\n\n    buildTypes {\n        release {\n            minifyEnabled false\n            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'\n        }\n    }\n    compileOptions {\n        sourceCompatibility JavaVersion.VERSION_1_8\n        targetCompatibility JavaVersion.VERSION_1_8\n    }\n}\n\ndependencies {\n\n    implementation 'androidx.appcompat:appcompat:1.5.1'\n    implementation 'com.google.android.material:material:1.7.0'\n    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'\n    testImplementation 'junit:junit:4.13.2'\n    androidTestImplementation 'androidx.test.ext:junit:1.1.4'\n    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/build.gradle b/app/build.gradle
+--- a/app/build.gradle	(revision dd1374a34ad87112b1a79b03b07cc80f01bc21cf)
++++ b/app/build.gradle	(date 1670099784888)
+@@ -1,5 +1,6 @@
+ plugins {
+     id 'com.android.application'
++    id 'com.google.gms.google-services'
+ }
+ 
+ android {
+@@ -33,6 +34,7 @@
+     implementation 'androidx.appcompat:appcompat:1.5.1'
+     implementation 'com.google.android.material:material:1.7.0'
+     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
++    implementation 'com.google.firebase:firebase-database:20.1.0'
+     testImplementation 'junit:junit:4.13.2'
+     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+Index: .idea/.name
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.name b/.idea/.name
+new file mode 100644
+--- /dev/null	(date 1670028399094)
++++ b/.idea/.name	(date 1670028399094)
+@@ -0,0 +1,1 @@
++FinalTimelineGenerator
+\ No newline at end of file
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+new file mode 100644
+--- /dev/null	(date 1670028399146)
++++ b/.idea/gradle.xml	(date 1670028399146)
+@@ -0,0 +1,19 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="GradleSettings">
++    <option name="linkedExternalProjectsSettings">
++      <GradleProjectSettings>
++        <option name="testRunner" value="GRADLE" />
++        <option name="distributionType" value="DEFAULT_WRAPPED" />
++        <option name="externalProjectPath" value="$PROJECT_DIR$" />
++        <option name="gradleJvm" value="JDK" />
++        <option name="modules">
++          <set>
++            <option value="$PROJECT_DIR$" />
++            <option value="$PROJECT_DIR$/app" />
++          </set>
++        </option>
++      </GradleProjectSettings>
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+new file mode 100644
+--- /dev/null	(date 1670028399144)
++++ b/.idea/compiler.xml	(date 1670028399144)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="CompilerConfiguration">
++    <bytecodeTargetLevel target="11" />
++  </component>
++</project>
+\ No newline at end of file
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Top-level build file where you can add configuration options common to all sub-projects/modules.\nplugins {\n    id 'com.android.application' version '7.3.1' apply false\n    id 'com.android.library' version '7.3.1' apply false\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/build.gradle b/build.gradle
+--- a/build.gradle	(revision dd1374a34ad87112b1a79b03b07cc80f01bc21cf)
++++ b/build.gradle	(date 1670099784889)
+@@ -1,4 +1,8 @@
+-// Top-level build file where you can add configuration options common to all sub-projects/modules.
++buildscript {
++    dependencies {
++        classpath 'com.google.gms:google-services:4.3.14'
++    }
++}// Top-level build file where you can add configuration options common to all sub-projects/modules.
+ plugins {
+     id 'com.android.application' version '7.3.1' apply false
+     id 'com.android.library' version '7.3.1' apply false
+Index: app/src/main/java/com/example/finaltimelinegenerator/repository/CourseRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.finaltimelinegenerator.repository;\n\nimport com.example.finaltimelinegenerator.model.Course;\n\nimport java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.List;\n\npublic class CourseRepository {\n\n    private final List<Course> courses = new ArrayList<>();\n\n    public CourseRepository() {\n        this.courses.add(\n                new Course(\n                        \"CSCC24\",\n                        Arrays.asList(\"Winter\", \"Summer\"),\n                        Arrays.asList(\"CSCB07\", \"CSCB09\")\n                )\n        );\n        this.courses.add(\n                new Course(\n                        \"CSCB07\",\n                        Arrays.asList(\"Fall\", \"Summer\"),\n                        Arrays.asList(\"CSCA48\")\n                )\n        );\n        this.courses.add(\n                new Course(\n                        \"CSCB09\",\n                        Arrays.asList(\"Winter\", \"Summer\"),\n                        Arrays.asList(\"CSCA48\")\n                )\n        );\n        this.courses.add(\n                new Course(\n                        \"CSCA48\",\n                        Arrays.asList(\"Winter\", \"Summer\"),\n                        Arrays.asList(\"CSCA08\")\n                )\n        );\n        this.courses.add(\n                new Course(\n                        \"CSCA08\",\n                        Arrays.asList(\"Fall\", \"Winter\"),\n                        Arrays.asList()\n                )\n        );\n        this.courses.add(\n                new Course(\n                        \"CSCC63\",\n                        Arrays.asList(\"Fall\", \"Winter\"),\n                        Arrays.asList(\"CSCB63\", \"CSCB36\")\n                )\n        );\n        this.courses.add(\n                new Course(\n                        \"CSCB63\",\n                        Arrays.asList(\"Winter\", \"Summer\"),\n                        Arrays.asList(\"CSCB36\")\n                )\n        );\n        this.courses.add(\n                new Course(\n                        \"CSCB36\",\n                        Arrays.asList(\"Fall\", \"Summer\"),\n                        Arrays.asList(\"CSCA48\", \"CSCA67\")\n                )\n        );\n        this.courses.add(\n                new Course(\n                        \"CSCA67\",\n                        Arrays.asList(\"Winter\", \"Fall\"),\n                        Arrays.asList()\n                )\n        );\n    }\n\n    public List<Course> getCourses() {\n        return this.courses;\n    }\n\n    public Course getCourse(String code) {\n        return this.courses\n                .stream()\n                .filter(course -> course.code.equals(code))\n                .findFirst()\n                .get();\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/finaltimelinegenerator/repository/CourseRepository.java b/app/src/main/java/com/example/finaltimelinegenerator/repository/CourseRepository.java
+--- a/app/src/main/java/com/example/finaltimelinegenerator/repository/CourseRepository.java	(revision dd1374a34ad87112b1a79b03b07cc80f01bc21cf)
++++ b/app/src/main/java/com/example/finaltimelinegenerator/repository/CourseRepository.java	(date 1670099784891)
+@@ -1,40 +1,84 @@
+ package com.example.finaltimelinegenerator.repository;
+ 
++import android.os.Bundle;
++
++import androidx.annotation.NonNull;
++import androidx.appcompat.app.AppCompatActivity;
++import com.google.firebase.database.DataSnapshot;
++import com.google.firebase.database.DatabaseError;
++import com.google.firebase.database.DatabaseReference;
++import com.google.firebase.database.FirebaseDatabase;
++import com.google.firebase.database.ValueEventListener;
+ import com.example.finaltimelinegenerator.model.Course;
+ 
+ import java.util.ArrayList;
+ import java.util.Arrays;
+ import java.util.List;
+ 
+-public class CourseRepository {
++public class CourseRepository extends AppCompatActivity {
+ 
+     private final List<Course> courses = new ArrayList<>();
++    FirebaseDatabase data;
++    DatabaseReference reference;
++    Course course;
++
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        course = new Course();
++        reference = data.getReference("Course_details");
++
++        reference.addValueEventListener(new ValueEventListener() {
++            @Override
++            public void onDataChange(@NonNull DataSnapshot snapshot) {
++                courses.clear();
++                for(DataSnapshot shot:snapshot.getChildren()){
++                    course = shot.getValue(Course.class);
++                    courses.add(course);
++                }
++
++                /**
++                CourseAdapter adapter = new CourseAdapter(DisplayActivity.this,
++                        R.layout.course_item, courses);
++                courseList.setAdapter(adapter);
++                 **/
++            }
++
++            @Override
++            public void onCancelled(@NonNull DatabaseError error) {
++
++            }
++        });
++    }
++
++
+ 
+     public CourseRepository() {
+-        this.courses.add(
+-                new Course(
+-                        "CSCC24",
+-                        Arrays.asList("Winter", "Summer"),
+-                        Arrays.asList("CSCB07", "CSCB09")
+-                )
+-        );
+-        this.courses.add(
+-                new Course(
+-                        "CSCB07",
+-                        Arrays.asList("Fall", "Summer"),
+-                        Arrays.asList("CSCA48")
+-                )
+-        );
+-        this.courses.add(
+-                new Course(
+-                        "CSCB09",
+-                        Arrays.asList("Winter", "Summer"),
+-                        Arrays.asList("CSCA48")
+-                )
+-        );
+-        this.courses.add(
+-                new Course(
+-                        "CSCA48",
++            this.courses.add(
++                    new Course(
++                            "CSCC24",
++                            Arrays.asList("Winter", "Summer"),
++                            Arrays.asList("CSCB07", "CSCB09")
++                    )
++            );
++            this.courses.add(
++                    new Course(
++                            "CSCB07",
++                            Arrays.asList("Fall", "Summer"),
++                            Arrays.asList("CSCA48")
++                    )
++            );
++            this.courses.add(
++                    new Course(
++                            "CSCB09",
++                            Arrays.asList("Winter", "Summer"),
++                            Arrays.asList("CSCA48")
++                    )
++            );
++            this.courses.add(
++                    new Course(
++                            "CSCA48",
+                         Arrays.asList("Winter", "Summer"),
+                         Arrays.asList("CSCA08")
+                 )
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1670028399143)
++++ b/.idea/vcs.xml	(date 1670028399143)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AndroidLayouts\">\n    <shared>\n      <config />\n    </shared>\n  </component>\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"NONE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"3e1114d8-e791-4cc2-97db-093a21bdf145\" name=\"Changes\" comment=\"\">\n      <change beforePath=\"$PROJECT_DIR$/app/src/main/java/com/example/timeline/MainActivity.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/src/main/java/com/example/timeline/MainActivity.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ExecutionTargetManager\" SELECTED_TARGET=\"device_and_snapshot_combo_box_target[/Users/victoriagadea/.android/avd/Pixel_2_API_TiramisuPrivacySandbox.avd]\" />\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2ICJqJD2UsbijFYBUXiCFfiXvan\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\n    <property name=\"RunOnceActivity.cidr.known.project.marker\" value=\"true\" />\n    <property name=\"cidr.known.project.marker\" value=\"true\" />\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"App\" type=\"AndroidRunConfigurationType\" factoryName=\"Android App\">\n      <module name=\"Timeline.app.main\" />\n      <option name=\"DEPLOY\" value=\"true\" />\n      <option name=\"DEPLOY_APK_FROM_BUNDLE\" value=\"false\" />\n      <option name=\"DEPLOY_AS_INSTANT\" value=\"false\" />\n      <option name=\"ARTIFACT_NAME\" value=\"\" />\n      <option name=\"PM_INSTALL_OPTIONS\" value=\"\" />\n      <option name=\"ALL_USERS\" value=\"false\" />\n      <option name=\"ALWAYS_INSTALL_WITH_PM\" value=\"false\" />\n      <option name=\"CLEAR_APP_STORAGE\" value=\"false\" />\n      <option name=\"DYNAMIC_FEATURES_DISABLED_LIST\" value=\"\" />\n      <option name=\"ACTIVITY_EXTRA_FLAGS\" value=\"\" />\n      <option name=\"MODE\" value=\"default_activity\" />\n      <option name=\"CLEAR_LOGCAT\" value=\"false\" />\n      <option name=\"SHOW_LOGCAT_AUTOMATICALLY\" value=\"false\" />\n      <option name=\"INSPECTION_WITHOUT_ACTIVITY_RESTART\" value=\"false\" />\n      <option name=\"TARGET_SELECTION_MODE\" value=\"SHOW_DIALOG\" />\n      <option name=\"SELECTED_CLOUD_MATRIX_CONFIGURATION_ID\" value=\"-1\" />\n      <option name=\"SELECTED_CLOUD_MATRIX_PROJECT_ID\" value=\"\" />\n      <option name=\"DEBUGGER_TYPE\" value=\"Auto\" />\n      <Auto>\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\n        <option name=\"WORKING_DIR\" value=\"\" />\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\n      </Auto>\n      <Hybrid>\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\n        <option name=\"WORKING_DIR\" value=\"\" />\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\n      </Hybrid>\n      <Java />\n      <Native>\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\n        <option name=\"WORKING_DIR\" value=\"\" />\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\n      </Native>\n      <Profilers>\n        <option name=\"ADVANCED_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"STARTUP_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"STARTUP_CPU_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"STARTUP_CPU_PROFILING_CONFIGURATION_NAME\" value=\"Java/Kotlin Method Sample (legacy)\" />\n        <option name=\"STARTUP_NATIVE_MEMORY_PROFILING_ENABLED\" value=\"false\" />\n        <option name=\"NATIVE_MEMORY_SAMPLE_RATE_BYTES\" value=\"2048\" />\n        <option name=\"PROFILING_MODE\" value=\"NOT_SET\" />\n      </Profilers>\n      <option name=\"DEEP_LINK\" value=\"\" />\n      <option name=\"ACTIVITY_CLASS\" value=\"\" />\n      <option name=\"SEARCH_ACTIVITY_IN_GLOBAL_SCOPE\" value=\"false\" />\n      <option name=\"SKIP_ACTIVITY_VALIDATION\" value=\"false\" />\n      <method v=\"2\">\n        <option name=\"Android.Gradle.BeforeRunTask\" enabled=\"true\" />\n      </method>\n    </configuration>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"3e1114d8-e791-4cc2-97db-093a21bdf145\" name=\"Changes\" comment=\"\" />\n      <created>1669679821686</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1669679821686</updated>\n    </task>\n    <servers />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision dd1374a34ad87112b1a79b03b07cc80f01bc21cf)
++++ b/.idea/workspace.xml	(date 1670099784893)
+@@ -10,8 +10,14 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="3e1114d8-e791-4cc2-97db-093a21bdf145" name="Changes" comment="">
+-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/timeline/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/timeline/MainActivity.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/finaltimelinegenerator/model/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/finaltimelinegenerator/model/Course.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/finaltimelinegenerator/repository/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/finaltimelinegenerator/repository/CourseRepository.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -19,6 +25,28 @@
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
+   <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/victoriagadea/.android/avd/Pixel_2_API_TiramisuPrivacySandbox.avd]" />
++  <component name="ExternalProjectsData">
++    <projectState path="$PROJECT_DIR$">
++      <ProjectState />
++    </projectState>
++  </component>
++  <component name="ExternalProjectsManager">
++    <system id="GRADLE">
++      <state>
++        <projects_view>
++          <tree_state>
++            <expand>
++              <path>
++                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
++                <item name="FinalTimelineGenerator" type="f1a62948:ProjectNode" />
++              </path>
++            </expand>
++            <select />
++          </tree_state>
++        </projects_view>
++      </state>
++    </system>
++  </component>
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+@@ -37,7 +65,7 @@
+     <property name="cidr.known.project.marker" value="true" />
+     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+   </component>
+-  <component name="RunManager">
++  <component name="RunManager" selected="Android App.app">
+     <configuration name="App" type="AndroidRunConfigurationType" factoryName="Android App">
+       <module name="Timeline.app.main" />
+       <option name="DEPLOY" value="true" />
+@@ -55,6 +83,65 @@
+       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+       <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
+       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
++      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
++      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
++      <option name="DEBUGGER_TYPE" value="Auto" />
++      <Auto>
++        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
++        <option name="SHOW_STATIC_VARS" value="true" />
++        <option name="WORKING_DIR" value="" />
++        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
++        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
++      </Auto>
++      <Hybrid>
++        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
++        <option name="SHOW_STATIC_VARS" value="true" />
++        <option name="WORKING_DIR" value="" />
++        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
++        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
++      </Hybrid>
++      <Java />
++      <Native>
++        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
++        <option name="SHOW_STATIC_VARS" value="true" />
++        <option name="WORKING_DIR" value="" />
++        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
++        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
++      </Native>
++      <Profilers>
++        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
++        <option name="STARTUP_PROFILING_ENABLED" value="false" />
++        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
++        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
++        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
++        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
++        <option name="PROFILING_MODE" value="NOT_SET" />
++      </Profilers>
++      <option name="DEEP_LINK" value="" />
++      <option name="ACTIVITY_CLASS" value="" />
++      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
++      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
++      <method v="2">
++        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
++      </method>
++    </configuration>
++    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
++      <module name="FinalTimelineGenerator.app.main" />
++      <option name="DEPLOY" value="true" />
++      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
++      <option name="DEPLOY_AS_INSTANT" value="false" />
++      <option name="ARTIFACT_NAME" value="" />
++      <option name="PM_INSTALL_OPTIONS" value="" />
++      <option name="ALL_USERS" value="false" />
++      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
++      <option name="CLEAR_APP_STORAGE" value="false" />
++      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
++      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
++      <option name="MODE" value="default_activity" />
++      <option name="CLEAR_LOGCAT" value="false" />
++      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
++      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
++      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+       <option name="DEBUGGER_TYPE" value="Auto" />
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1670029979846)
++++ b/.idea/misc.xml	(date 1670029979846)
+@@ -0,0 +1,5 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ExternalStorageConfigurationManager" enabled="true" />
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
++</project>
+\ No newline at end of file
+Index: app/src/main/java/com/example/finaltimelinegenerator/model/Course.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.finaltimelinegenerator.model;\n\nimport java.util.List;\npublic class Course {\n\n    public String code;\n    public List<String> session;\n    public List<String> prerequisites;\n\n    public Course(String code, List<String> session, List<String> prerequisites) {\n        this.code = code;\n        this.session = session;\n        this.prerequisites = prerequisites;\n    }\n\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/finaltimelinegenerator/model/Course.java b/app/src/main/java/com/example/finaltimelinegenerator/model/Course.java
+--- a/app/src/main/java/com/example/finaltimelinegenerator/model/Course.java	(revision dd1374a34ad87112b1a79b03b07cc80f01bc21cf)
++++ b/app/src/main/java/com/example/finaltimelinegenerator/model/Course.java	(date 1670099784894)
+@@ -7,11 +7,23 @@
+     public List<String> session;
+     public List<String> prerequisites;
+ 
++//    public String session;
++//    public String prerequisites;
++
++
++    public Course() {
++    }
+     public Course(String code, List<String> session, List<String> prerequisites) {
+         this.code = code;
+         this.session = session;
+         this.prerequisites = prerequisites;
+     }
+ 
++//    public Course(String code, String session, String prerequisites) {
++//        this.code = code;
++//        this.session = session;
++//        this.prerequisites = prerequisites;
++//    }
++
+ 
+ }
+\ No newline at end of file
