@@ -29,7 +29,9 @@ public class student_main extends AppCompatActivity {
 
         display_courses_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { startActivity(new Intent(student_main.this, DisplayActivity.class));}
+            public void onClick(View v) {  Intent intent = new Intent(student_main.this, DisplayActivity.class);
+                intent.putExtra("name", username);
+                startActivity(intent);}
         });
 
         addCourseButton.setOnClickListener(new View.OnClickListener() {

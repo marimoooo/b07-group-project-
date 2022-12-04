@@ -3,6 +3,7 @@ package com.example.b07;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -31,7 +32,8 @@ public class DisplayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display);
         ListView courseList = (ListView) findViewById(R.id.CourseListView);
         data = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/");
-        String name = "student2";
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
         theCourse = new Course();
         reference = data.getReference("students").child(name).child("courses");
         reference.addValueEventListener(new ValueEventListener() {
