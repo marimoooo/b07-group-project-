@@ -106,7 +106,7 @@ public class Course_addition_admin extends AppCompatActivity {
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
                     items2.add(snapshot.getKey().toString());
                     z[0] = z[0] + snapshot.getKey().toString();
-                    Toast.makeText(Course_addition_admin.this, "" + snapshot.getKey().toString() + "is added to the course pre-req.", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(Course_addition_admin.this, "" + snapshot.getKey().toString() + "is added to the course pre-req.", Toast.LENGTH_SHORT).show();
 //                    list.add(snapshot.getValue().toString());
                 }
             }

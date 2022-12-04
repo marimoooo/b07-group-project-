@@ -100,6 +100,7 @@ public class MainActivity2 extends AppCompatActivity {
                         HashMap hashMap2 = new HashMap();
                         hashMap2.put("name", newName);
                         databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(""+code+"").updateChildren(hashMap2);
+                        Toast.makeText(MainActivity2.this, "Course name is changed", Toast.LENGTH_SHORT).show();
                     }
                 }
                 @Override
@@ -132,7 +133,7 @@ public class MainActivity2 extends AppCompatActivity {
                     }
                 }
             });
-            databaseRef.child("Course details").child(code).child("pre req").get( ).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            databaseRef.child("Course details").child(code).child("prereq").get( ).addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DataSnapshot> task) {
                     if (!task.isSuccessful()) {
@@ -142,7 +143,7 @@ public class MainActivity2 extends AppCompatActivity {
                         Log.d("firebase", String.valueOf(task.getResult().getValue()));
                         preq = task.getResult().getValue().toString();
                         HashMap hashMap2 = new HashMap();
-                        hashMap2.put("pre req", preq);
+                        hashMap2.put("prereq", preq);
                         databaseRef.child("Course details").child(newCode).updateChildren(hashMap2);
                     }
                 }
@@ -178,6 +179,7 @@ public class MainActivity2 extends AppCompatActivity {
                         hashMap2.put("name", name);
                         hashMap2.put("code", newCourseCode.getText().toString());
                         databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(""+newCourseCode.getText().toString()+"").updateChildren(hashMap2);
+                        Toast.makeText(MainActivity2.this, "Course code is changed", Toast.LENGTH_SHORT).show();
                         databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(""+code+"").setValue(null);
                     }
                 }
@@ -203,6 +205,7 @@ public class MainActivity2 extends AppCompatActivity {
                         HashMap hashMap2 = new HashMap();
                         hashMap2.put("session", offernew);
                         databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(""+code+"").updateChildren(hashMap2);
+                        Toast.makeText(MainActivity2.this, "Course offerings are changed", Toast.LENGTH_SHORT).show();
                         //databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(""+code+"").setValue(null);
                     }
                 }
@@ -216,7 +219,8 @@ public class MainActivity2 extends AppCompatActivity {
         Button buttonModifyPreq = findViewById(R.id.button_modify_preq);
         buttonModifyPreq.setOnClickListener(v -> {
             String code= oldCourseCode.getText().toString();
-            databaseRef.child("Course details").child(code).child("pre req").setValue(newPreq.getText().toString());
+            databaseRef.child("Course details").child(code).child("prereq").setValue(newPreq.getText().toString());
+            Toast.makeText(MainActivity2.this, "Course Pre-req are changed", Toast.LENGTH_SHORT).show();
         });
 
         backButton.setOnClickListener(new View.OnClickListener() {

@@ -23,7 +23,7 @@ public class DAOCourseAddition {
 //        for(int i = 0; i < myList.size(); i++){
         databaseReference.child("Course details").child(emp.get_code()).child("session").setValue(emp.getCourse_offering().toString());
         emp.setCourse_offering("");
-        databaseReference.child("Course details").child(emp.get_code()).child("pre req").setValue(emp.getCourse_pre_req());
+        databaseReference.child("Course details").child(emp.get_code()).child("prereq").setValue(emp.getCourse_pre_req());
         emp.setCourse_pre_req("");
 //            i++;
 //        }
