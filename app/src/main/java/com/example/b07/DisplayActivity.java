@@ -129,7 +129,7 @@ public class DisplayActivity extends AppCompatActivity {
 //    DatabaseReference reference;
 
     DatabaseReference databaseReference = FirebaseDatabase.
-            getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference("student");
+            getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference("students");
 
     List<Course> courses = new ArrayList<>();
     Course theCourse;
