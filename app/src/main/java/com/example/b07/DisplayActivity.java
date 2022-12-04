@@ -6,7 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -35,7 +37,6 @@ public class DisplayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display);
         Intent intent = getIntent();
         String username = intent.getStringExtra("username");
-
         ArrayAdapter<String> myArrayAdapter = new ArrayAdapter<String>(DisplayActivity.this, android.R.layout.simple_list_item_1, myArrayList);
 
         myListView = (ListView) findViewById(R.id.CourseListView);
@@ -51,12 +52,10 @@ public class DisplayActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String course_Code = snapshot.getKey();
-//                assert course_Code != null;
-//                String course_Name = snapshot.child("name").getValue().toString();
-//                String course_Session = snapshot.child("session").getValue().toString();
-//                String course_PreReq = snapshot.child("prereq").getValue().toString();
-                myArrayList.add(course_Code);
-
+                assert course_Code != null;
+                String course_Name = snapshot.child("name").getValue().toString();
+                String course_Session = snapshot.child("session").getValue().toString();
+                myArrayList.add("\n" + "Course Code: " + course_Code + "\n" + "Course Name: "+ course_Name + "\n" + "Course Offering: "+ course_Session + "\n");
                 myArrayAdapter.notifyDataSetChanged();
             }
 
@@ -79,6 +78,11 @@ public class DisplayActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+        });
+        Button gobackbutton = findViewById(R.id.button8);
+        gobackbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { startActivity(new Intent(DisplayActivity.this, student_main.class));}
         });
     }
 }
