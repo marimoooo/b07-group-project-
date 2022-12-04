@@ -53,6 +53,8 @@ public class MainActivity3 extends AppCompatActivity {
 //            databaseRef.child("Course details").child(code).child("Course Pre-requisites").setValue(newPreq.getText().toString());
                 Toast.makeText(MainActivity3.this, ""+ code + " is deleted", Toast.LENGTH_SHORT).show();
                 databaseRef.child("Course details").child(""+code+"").removeValue();
+                startActivity(new Intent(MainActivity3.this, Admin_Homepage.class));
+
 //                databaseRef.child("students").child("takenCourse").child("course01").removeValue();
 //                Toast.makeText(MainActivity3.this, ""+ databaseRef.child("students").child("abc").toString() + " is deleted", Toast.LENGTH_SHORT).show();
 //                databaseRef.child("students").child("takenCourse").child("course01").removeValue();
