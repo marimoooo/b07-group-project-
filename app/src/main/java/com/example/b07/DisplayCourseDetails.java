@@ -4,8 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -67,5 +70,12 @@ public class DisplayCourseDetails extends AppCompatActivity {
 
             }
         });
+
+        Button gobackbutton = findViewById(R.id.button9);
+        gobackbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { startActivity(new Intent(DisplayCourseDetails.this, admin_main.class));}
+        });
+
     }
 }
