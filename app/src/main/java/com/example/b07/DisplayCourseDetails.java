@@ -4,26 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class DisplayActivity extends AppCompatActivity {
+public class DisplayCourseDetails extends AppCompatActivity {
 
     ListView myListView;
     ArrayList<String> myArrayList = new ArrayList<>();
@@ -32,30 +25,24 @@ public class DisplayActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display);
-        Intent intent = getIntent();
-        String username = intent.getStringExtra("username");
+        setContentView(R.layout.activity_display_course_details);
 
-        ArrayAdapter<String> myArrayAdapter = new ArrayAdapter<String>(DisplayActivity.this, android.R.layout.simple_list_item_1, myArrayList);
+        ArrayAdapter<String> myArrayAdapter = new ArrayAdapter<String>(DisplayCourseDetails.this, android.R.layout.simple_list_item_1, myArrayList);
 
-        myListView = (ListView) findViewById(R.id.CourseListView);
+        myListView = (ListView) findViewById(R.id.listview1);
         myListView.setAdapter(myArrayAdapter);
-//        TextView textView = findViewById(R.id.textViewName);
-//        Intent intent = getIntent();
-//        String username = intent.getStringExtra("username");
-//        textView.setText(username);
-//        Toast.makeText(DisplayActivity.this, "" + username, Toast.LENGTH_SHORT).show();
-        mRef = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("students").child(username).child("courses");
+
+        mRef = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("Course details");
 
         mRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 String course_Code = snapshot.getKey();
-//                assert course_Code != null;
-//                String course_Name = snapshot.child("name").getValue().toString();
-//                String course_Session = snapshot.child("session").getValue().toString();
-//                String course_PreReq = snapshot.child("prereq").getValue().toString();
-                myArrayList.add(course_Code);
+                assert course_Code != null;
+                String course_Name = snapshot.child("name").getValue().toString();
+                String course_Session = snapshot.child("session").getValue().toString();
+                String course_PreReq = snapshot.child("prereq").getValue().toString();
+                myArrayList.add("\n" + "Course Code: " + course_Code + "\n" + "Course Name: "+ course_Name + "\n" + "Course Offering: "+ course_Session + "\n" + "Course Pre-requisites: "+ course_PreReq + "\n");
 
                 myArrayAdapter.notifyDataSetChanged();
             }

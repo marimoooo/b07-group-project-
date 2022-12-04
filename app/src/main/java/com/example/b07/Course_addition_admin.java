@@ -223,16 +223,12 @@ public class Course_addition_admin extends AppCompatActivity {
         });
 //        items2.add("hola" + edit_course_code.getText().toString());
         first_to_second = findViewById(R.id.move);
-//        first_to_second.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-////                first_to_second.setVisibility(View.GONE);
-////                Fragment fragment = new SecondFragment();
-////                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-////                fragmentTransaction.replace(R.id.container, fragment).commit();
-//            }
-//        });
-
+        first_to_second.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Course_addition_admin.this, admin_main.class));
+            }
+        });
     }
 
     @Override
@@ -254,6 +250,7 @@ public class Course_addition_admin extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
 //    @Override
 //    public boolean onSupportNavigateUp() {

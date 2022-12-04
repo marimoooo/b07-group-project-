@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class student_main extends AppCompatActivity {
 
@@ -29,7 +30,11 @@ public class student_main extends AppCompatActivity {
 
         display_courses_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { startActivity(new Intent(student_main.this, DisplayActivity.class));}
+            public void onClick(View v) {
+                Intent intent = new Intent(student_main.this, DisplayCourseDetails.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
+            }
         });
 
         addCourseButton.setOnClickListener(new View.OnClickListener() {
