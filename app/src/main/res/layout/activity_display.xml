@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     tools:context=".DisplayActivity">
 
-    <ListView
+<ListView
         android:id="@+id/CourseListView"
-        android:layout_width="337dp"
-        android:layout_height="610dp"
+        android:layout_width="336dp"
+        android:layout_height="530dp"
         android:layout_marginStart="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,7 +33,7 @@
         android:id="@+id/textView24"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="35dp"
         android:layout_marginBottom="17dp"
         android:text="Here is the list of courses that you have taken"
         android:textAlignment="center"
@@ -43,5 +43,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
+    
 </androidx.constraintlayout.widget.ConstraintLayout>
