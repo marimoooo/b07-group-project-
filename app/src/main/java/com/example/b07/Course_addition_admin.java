@@ -104,9 +104,9 @@ public class Course_addition_admin extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-                    items2.add(snapshot.child("Course Code").getValue().toString());
-                    z[0] = z[0] + snapshot.child("Course Code").getValue().toString();
-                    Toast.makeText(Course_addition_admin.this, "" + snapshot.child("Course Code").getValue().toString() + "is added to the course pre-req.", Toast.LENGTH_SHORT).show();
+                    items2.add(snapshot.getKey().toString());
+                    z[0] = z[0] + snapshot.getKey().toString();
+                    Toast.makeText(Course_addition_admin.this, "" + snapshot.getKey().toString() + "is added to the course pre-req.", Toast.LENGTH_SHORT).show();
 //                    list.add(snapshot.getValue().toString());
                 }
             }

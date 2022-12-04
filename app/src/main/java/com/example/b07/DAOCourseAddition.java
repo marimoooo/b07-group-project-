@@ -19,15 +19,15 @@ public class DAOCourseAddition {
     public Task<Void> add(Course_details emp){
 //        if(emp == null) //throw exp
 //        List<String> myList = new ArrayList<String>(Arrays.asList(emp.getCourse_offering().toString().split(",")));
-        databaseReference.child("Course details").child(emp.get_code()).child("Course Code").setValue(emp.get_code());
+        databaseReference.child("Course details").child(emp.get_code()).child("code").setValue(emp.get_code());
 //        for(int i = 0; i < myList.size(); i++){
-        databaseReference.child("Course details").child(emp.get_code()).child("Session").setValue(emp.getCourse_offering().toString());
+        databaseReference.child("Course details").child(emp.get_code()).child("session").setValue(emp.getCourse_offering().toString());
         emp.setCourse_offering("");
-        databaseReference.child("Course details").child(emp.get_code()).child("Course Pre-requisites").setValue(emp.getCourse_pre_req());
+        databaseReference.child("Course details").child(emp.get_code()).child("pre req").setValue(emp.getCourse_pre_req());
         emp.setCourse_pre_req("");
 //            i++;
 //        }
-        return databaseReference.child("Course details").child(emp.get_code()).child("Course Name").setValue(emp.getCourse_name());
+        return databaseReference.child("Course details").child(emp.get_code()).child("name").setValue(emp.getCourse_name());
 
 //        return emp.setCourse_pre_req("");
 

@@ -59,18 +59,18 @@ public class MainActivity3 extends AppCompatActivity {
                 startActivity(new Intent(MainActivity3.this, admin_main.class));
                 finish();
 
-                databaseRef.child("students").child("takenCourse").child("course01").removeValue();
-                Toast.makeText(MainActivity3.this, ""+ databaseRef.child("students").child("abc").toString() + " is deleted", Toast.LENGTH_SHORT).show();
-                databaseRef.child("students").child("takenCourse").child("course01").removeValue();
+//                databaseRef.child("students").child("takenCourse").child("course01").removeValue();
+//                Toast.makeText(MainActivity3.this, ""+ databaseRef.child("students").child("abc").toString() + " is deleted", Toast.LENGTH_SHORT).show();
+//                databaseRef.child("students").child("takenCourse").child("course01").removeValue();
 
                 DatabaseReference reference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("students");
-                Toast.makeText(MainActivity3.this, "$$$", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity3.this, "$$$", Toast.LENGTH_SHORT).show();
 
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-                            Toast.makeText(MainActivity3.this, "$$$" + Objects.requireNonNull(snapshot.child("courses")), Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(MainActivity3.this, "$$$" + Objects.requireNonNull(snapshot.child("courses")), Toast.LENGTH_SHORT).show();
                             databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(""+code+"").removeValue();
                             finish();
 

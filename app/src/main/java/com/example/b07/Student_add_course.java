@@ -142,12 +142,12 @@ public class Student_add_course extends AppCompatActivity {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if(snapshot.hasChild(courseCodeText)){
 
-                                final String courseSessions = snapshot.child(courseCodeText).child("Session").getValue(String.class);
+                                final String courseSessions = snapshot.child(courseCodeText).child("session").getValue(String.class);
 
                                 List<String> sessions = Arrays.asList(courseSessions.split(","));
 
                                 if(sessions.contains(courseSessionText)){
-                                    final String courseNameText = snapshot.child(courseCodeText).child("Course Name").getValue(String.class);
+                                    final String courseNameText = snapshot.child(courseCodeText).child("name").getValue(String.class);
                                     databaseReference.child("students").child(username).child("courses").child(courseCodeText).child("code").setValue(courseCodeText);
                                     databaseReference.child("students").child(username).child("courses").child(courseCodeText).child("session").setValue(courseSessionText);
                                     databaseReference.child("students").child(username).child("courses").child(courseCodeText).child("name").setValue(courseNameText);
