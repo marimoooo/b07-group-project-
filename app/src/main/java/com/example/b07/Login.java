@@ -90,7 +90,9 @@ import com.google.firebase.database.ValueEventListener;
 
                                 if(getPassword.equals(passwordText)){
                                     Toast.makeText(Login.this, "Log in successful", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(Login.this, Admin_Homepage.class));
+                                    Intent intent = new Intent(Login.this, admin_main.class);
+                                    intent.putExtra("username", usernameText);
+                                    startActivity(intent);
                                     finish();
                                 }
                                 else{

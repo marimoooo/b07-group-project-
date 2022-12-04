@@ -37,7 +37,7 @@ import java.util.Objects;
 public class MainActivity2 extends AppCompatActivity {
 
     private ActivityMain2Binding binding;
-//    TextView enteredCourseCode;
+    //    TextView enteredCourseCode;
     DatabaseReference databaseRef;
     String offering, preq, name;
 
@@ -63,6 +63,9 @@ public class MainActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username");
+        final Button backButton = findViewById(R.id.backButton);
         databaseRef = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference();
 
 //        binding.buttonModifyName.setOnClickListener();
@@ -216,6 +219,17 @@ public class MainActivity2 extends AppCompatActivity {
             databaseRef.child("Course details").child(code).child("Course Pre-requisites").setValue(newPreq.getText().toString());
         });
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity2.this, admin_main.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
+            }
+        });
+
+
+
 ////            databaseRef.child("Course_details").child(code).removeValue()get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
 ////                @Override
 ////                public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -235,7 +249,7 @@ public class MainActivity2 extends AppCompatActivity {
 ////                }
 //            });
 
-            //child("cscb48").setValue(null);
+        //child("cscb48").setValue(null);
 
 //        binding.buttonModifyName.setOnClickListener(view12 -> {
 //            String code=binding.newCourseName.getText().toString();

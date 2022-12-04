@@ -35,9 +35,7 @@ public class student_main extends AppCompatActivity {
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(student_main.this, Login.class));
-            }
+            public void onClick(View v) { startActivity(new Intent(student_main.this, Login.class));}
         });
     }
 }

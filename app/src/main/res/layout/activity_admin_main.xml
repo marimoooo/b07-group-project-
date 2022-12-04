@@ -10,21 +10,21 @@
         android:id="@+id/textViewName2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="400dp"
-        android:textSize="20dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="250dp"
+        android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="400dp"
-        android:textSize="20dp"
-        android:text="Name: "
+        android:layout_marginTop="250dp"
+        android:textSize="24dp"
+        android:text="Hello! "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,10 +38,22 @@
         app:layout_constraintVertical_bias="0.9" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/addCourseButton"
+        android:id="@+id/modifyCourseButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="228dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@color/grey"
+        android:text="modify course"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="40dp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/addCourseButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="300dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:background="@color/grey"
@@ -50,24 +62,12 @@
         tools:layout_editor_absoluteX="40dp" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/seeCoursesButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="300dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@color/grey"
-        android:text="see courses"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="40dp" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/aboutButton"
+        android:id="@+id/deleteCourseButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="152dp"
         android:background="@color/grey"
-        android:text="about"
+        android:text="delete course"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintBottom_toBottomOf="parent"

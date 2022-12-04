@@ -58,6 +58,10 @@ public class Course_addition_admin extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username");
+
 //        ArrayList<String> list = new ArrayList<>();
 //        DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 //        reference.addValueEventListener(new ValueEventListener() {
@@ -209,7 +213,9 @@ public class Course_addition_admin extends AppCompatActivity {
                 Toast.makeText(this, edit_course_code.getText().toString() + " is added!", Toast.LENGTH_SHORT).show();
                 emp.setCourse_pre_req("");
 //                Toast.makeText(Course_addition_admin.this, "$$$" + emp.getCourse_pre_req().toString() + "$$$", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Course_addition_admin.this, Admin_Homepage.class));
+                Intent intent1 = new Intent(Course_addition_admin.this, admin_main.class);
+                intent.putExtra("username", username);
+                startActivity(intent1);
             }).addOnFailureListener(er->
             {
                 Toast.makeText(this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();

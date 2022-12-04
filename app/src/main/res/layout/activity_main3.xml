@@ -6,15 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity3">
 
-    <Button
+<!--    <Button-->
+<!--        android:id="@+id/button3"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Delete Course"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button3"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Delete Course"
+        android:background="@color/grey"
+        android:text="delete course"
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/newCourseName"
+        app:layout_constraintVertical_bias="0.179" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/backButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey"
+        android:text="main page"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <EditText
         android:id="@+id/newCourseName"
@@ -25,7 +45,6 @@
         android:ems="10"
         android:hint="Type the course name to delete"
         android:inputType="textPersonName"
-        android:text=""
         android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="#4E4646"
@@ -33,6 +52,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></EditText>
-    <!--        app:layout_constraintTop_toBottomOf="@+id/new_course"-->
-<!--        tools:ignore="LabelFor" />-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

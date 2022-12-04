@@ -18,6 +18,8 @@ public class admin_main extends AppCompatActivity {
         setContentView(R.layout.activity_admin_main);
 
         final Button addCourseButton = findViewById(R.id.addCourseButton);
+        final Button modifyCourseButton = findViewById(R.id.modifyCourseButton);
+        final Button deleteCourseButton = findViewById(R.id.deleteCourseButton);
         final Button logoutButton = findViewById(R.id.logoutButton);
         textView = findViewById(R.id.textViewName2);
         Intent intent = getIntent();
@@ -27,10 +29,28 @@ public class admin_main extends AppCompatActivity {
         addCourseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(admin_main.this, admin_add_courses.class);
-//                intent.putExtra("username", username);
-//                startActivity(intent);
-                startActivity(new Intent(admin_main.this, admin_add_course.class));
+                Intent intent = new Intent(admin_main.this, Course_addition_admin.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
+//                startActivity(new Intent(admin_main.this, Course_addition_admin.class));
+            }
+        });
+
+        modifyCourseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(admin_main.this, MainActivity2.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
+            }
+        });
+
+        deleteCourseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(admin_main.this, MainActivity3.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
             }
         });
 

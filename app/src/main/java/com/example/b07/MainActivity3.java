@@ -29,22 +29,25 @@ public class MainActivity3 extends AppCompatActivity {
         EditText newCourseName = findViewById(R.id.newCourseName);
         databaseRef = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference();
         Button delete = findViewById(R.id.button3);
-        delete.setOnClickListener(v -> {
-//            String code = newCourseName.getText().toString();
-////            databaseRef.child("Course details").child(code).child("Course Pre-requisites").setValue(newPreq.getText().toString());
-//            Toast.makeText(MainActivity3.this, ""+ code + "is deleted", Toast.LENGTH_SHORT).show();
-//            databaseRef.child("Course details").child(""+code+"").removeValue();
-//            Toast.makeText(MainActivity3.this, ""+ code + "is deleted", Toast.LENGTH_SHORT).show();
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username");
+        final Button backButton = findViewById(R.id.backButton);
+//        delete.setOnClickListener(v -> {
+////            String code = newCourseName.getText().toString();
+//////            databaseRef.child("Course details").child(code).child("Course Pre-requisites").setValue(newPreq.getText().toString());
+////            Toast.makeText(MainActivity3.this, ""+ code + "is deleted", Toast.LENGTH_SHORT).show();
+////            databaseRef.child("Course details").child(""+code+"").removeValue();
+////            Toast.makeText(MainActivity3.this, ""+ code + "is deleted", Toast.LENGTH_SHORT).show();
+//
+//        });
 
-        });
-
-        delete = findViewById(R.id.button3);
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity3.this, Admin_Homepage.class));
-            }
-        });
+//        delete = findViewById(R.id.button3);
+//        delete.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(MainActivity3.this, Admin_Homepage.class));
+//            }
+//        });
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,14 +56,15 @@ public class MainActivity3 extends AppCompatActivity {
 //            databaseRef.child("Course details").child(code).child("Course Pre-requisites").setValue(newPreq.getText().toString());
                 Toast.makeText(MainActivity3.this, ""+ code + " is deleted", Toast.LENGTH_SHORT).show();
                 databaseRef.child("Course details").child(""+code+"").removeValue();
-                startActivity(new Intent(MainActivity3.this, Admin_Homepage.class));
+                startActivity(new Intent(MainActivity3.this, admin_main.class));
+                finish();
 
-//                databaseRef.child("students").child("takenCourse").child("course01").removeValue();
-//                Toast.makeText(MainActivity3.this, ""+ databaseRef.child("students").child("abc").toString() + " is deleted", Toast.LENGTH_SHORT).show();
-//                databaseRef.child("students").child("takenCourse").child("course01").removeValue();
+                databaseRef.child("students").child("takenCourse").child("course01").removeValue();
+                Toast.makeText(MainActivity3.this, ""+ databaseRef.child("students").child("abc").toString() + " is deleted", Toast.LENGTH_SHORT).show();
+                databaseRef.child("students").child("takenCourse").child("course01").removeValue();
 
                 DatabaseReference reference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("students");
-//                Toast.makeText(MainActivity3.this, "$$$", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity3.this, "$$$", Toast.LENGTH_SHORT).show();
 
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -68,6 +72,7 @@ public class MainActivity3 extends AppCompatActivity {
                         for(DataSnapshot snapshot: dataSnapshot.getChildren()){
                             Toast.makeText(MainActivity3.this, "$$$" + Objects.requireNonNull(snapshot.child("courses")), Toast.LENGTH_SHORT).show();
                             databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(""+code+"").removeValue();
+                            finish();
 
 //                            Toast.makeText(Admin_course_addition.this, "" + snapshot.child("Course Code").getValue().toString() + "is added to the course pre-req.", Toast.LENGTH_SHORT).show();
 //                    list.add(snapshot.getValue().toString());
@@ -79,6 +84,15 @@ public class MainActivity3 extends AppCompatActivity {
 
                     }
                 });
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity3.this, admin_main.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
             }
         });
     }
