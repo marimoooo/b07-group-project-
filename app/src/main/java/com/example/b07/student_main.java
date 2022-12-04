@@ -19,10 +19,18 @@ public class student_main extends AppCompatActivity {
 
         final Button addCourseButton = findViewById(R.id.addCourseButton);
         final Button logoutButton = findViewById(R.id.logoutButton);
+        final Button display_courses_button = findViewById(R.id.seeCoursesButton);
+        final Button about_button = findViewById(R.id.aboutButton);
+
         textView = findViewById(R.id.textViewName);
         Intent intent = getIntent();
         String username = intent.getStringExtra("username");
         textView.setText(username);
+
+        display_courses_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { startActivity(new Intent(student_main.this, DisplayActivity.class));}
+        });
 
         addCourseButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,6 +39,11 @@ public class student_main extends AppCompatActivity {
                 intent.putExtra("username", username);
                 startActivity(intent);
             }
+        });
+
+        about_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { startActivity(new Intent(student_main.this, Login.class));}
         });
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
