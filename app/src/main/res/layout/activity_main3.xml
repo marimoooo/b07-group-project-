@@ -6,22 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity3">
 
-<!--    <Button-->
-<!--        android:id="@+id/button3"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="Delete Course"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/grey"
-        android:text="delete course"
+        android:text="@string/delete_course"
         android:layout_marginStart="80dp"
         android:layout_marginEnd="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -33,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/grey"
-        android:text="main page"
+        android:text="@string/main_page"
         app:layout_constraintBottom_toBottomOf="parent" />
 
     <EditText
@@ -43,7 +33,7 @@
         android:layout_marginTop="270dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="Type the course name to delete"
+        android:hint="@string/type_the_course_name_to_delete"
         android:inputType="textPersonName"
         android:textAlignment="center"
         android:textAllCaps="true"

@@ -1,28 +1,18 @@
 package com.example.b07;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Bundle;
-import android.util.AttributeSet;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 //ok
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 //import androidx.navigation.fragment.NavHostFragment;
 
-import com.example.b07.databinding.ActivityCourseModificationBinding;
-import com.example.b07.databinding.ActivityMain2Binding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
@@ -31,78 +21,65 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Objects;
 
 public class MainActivity2 extends AppCompatActivity {
 
-    private ActivityMain2Binding binding;
-    //    TextView enteredCourseCode;
+    Intent intent, intent2;
     DatabaseReference databaseRef;
-    String offering, preq, name;
-
-
+    String username, offering, preq, name, code, newName, newCode, offernew, preqNew;
+    Button backButton, buttonModifyName, buttonModifyCourseCode, buttonModifyOffering, buttonModifyPreq;
+    EditText oldCourseCode, newCourseName, newCourseCode, newOffering, newPreq;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        Intent intent = getIntent();
-        String username = intent.getStringExtra("username");
-        final Button backButton = findViewById(R.id.backButton);
+        intent = getIntent();
+        username = intent.getStringExtra("username");
         databaseRef = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference();
+        backButton = findViewById(R.id.backButton);
+        oldCourseCode = findViewById(R.id.oldCourseCode);
+        newCourseName = findViewById(R.id.newCourseName);
+        newCourseCode = findViewById(R.id.newCourseCode);
+        newOffering = findViewById(R.id.newOffering);
+        newPreq = findViewById(R.id.newPreq);
+        buttonModifyName = findViewById(R.id.button_modify_name);
+        buttonModifyCourseCode = findViewById(R.id.button_modify_course_code);
+        buttonModifyOffering = findViewById(R.id.button_modify_offering);
+        buttonModifyPreq = findViewById(R.id.button_modify_preq);
 
-        EditText oldCourseCode = findViewById(R.id.oldCourseCode);
-        EditText newCourseName = findViewById(R.id.newCourseName);
-        EditText newCourseCode = findViewById(R.id.newCourseCode);
-        EditText newOffering = findViewById(R.id.newOffering);
-        EditText newPreq = findViewById(R.id.newPreq);
-        oldCourseCode.setOnClickListener(v -> {
-            String code=oldCourseCode.getText().toString();
-            Toast.makeText(MainActivity2.this, "Log " + code, Toast.LENGTH_SHORT).show();
-        });
-        Button buttonModifyName = findViewById(R.id.button_modify_name);
         buttonModifyName.setOnClickListener(v -> {
-            String code = oldCourseCode.getText().toString();
-            String newName = newCourseName.getText().toString();
+            code = oldCourseCode.getText().toString();
+            newName = newCourseName.getText().toString();
             if (!code.equals("") && !newName.equals("") ){
                 Toast.makeText(MainActivity2.this, "Log " + code, Toast.LENGTH_SHORT).show();
                 //set new name on the admin side
                 databaseRef.child("Course details").child(code).child("name").setValue(newName);
-                DatabaseReference reference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("students");
-                reference.addValueEventListener(new ValueEventListener() {
+                //set new name on the student side
+                databaseRef.child("students").addValueEventListener(new ValueEventListener() {
                     @Override
-
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-    //                        Toast.makeText(MainActivity2.this, "$$$" + Objects.requireNonNull(snapshot.child("courses")), Toast.LENGTH_SHORT).show();
-                            HashMap hashMap2 = new HashMap();
-                            hashMap2.put("name", newName);
-                            databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child("" + code + "").updateChildren(hashMap2);
+                            databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(code).child("name").setValue(newName);
                             Toast.makeText(MainActivity2.this, "Course name is changed", Toast.LENGTH_SHORT).show();
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
             }else{
                 Toast.makeText(MainActivity2.this, "input fields can't be empty", Toast.LENGTH_SHORT).show();
             }
         });
-        Button buttonModifyCourseCode = findViewById(R.id.button_modify_course_code);
+
         buttonModifyCourseCode.setOnClickListener(v -> {
-            String code = oldCourseCode.getText().toString();
-            String newCode = newCourseCode.getText().toString();
+            code = oldCourseCode.getText().toString();
+            newCode = newCourseCode.getText().toString();
             if (!code.equals("") && !newCode.equals("")){
-                // String name, offering, preq;
-                HashMap hashMap = new HashMap();
-                hashMap.put("code", newCode);
-                databaseRef.child("Course details").child(newCode).updateChildren(hashMap);
-                //String name;
+                databaseRef.child("Course details").child(newCode).child("code").setValue(newCode);
+                //get name from old course code add it to the new course code
                 databaseRef.child("Course details").child(code).child("name").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -117,6 +94,7 @@ public class MainActivity2 extends AppCompatActivity {
                         }
                     }
                 });
+                //get preq from old course code add it to the new course code
                 databaseRef.child("Course details").child(code).child("prereq").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -131,6 +109,7 @@ public class MainActivity2 extends AppCompatActivity {
                         }
                     }
                 });
+                //get offering from old course code and add it to the new course code
                 databaseRef.child("Course details").child(code).child("session").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DataSnapshot> task) {
@@ -139,94 +118,78 @@ public class MainActivity2 extends AppCompatActivity {
                         } else {
                             Log.d("firebase", String.valueOf(task.getResult().getValue()));
                             offering = task.getResult().getValue().toString();
-                            HashMap hashMap2 = new HashMap();
-                            hashMap2.put("session", offering);
-                            databaseRef.child("Course details").child(newCode).updateChildren(hashMap2);
+                            databaseRef.child("Course details").child(newCode).child("session").setValue(offering);
                         }
                     }
                 });
-                //delete old course
+                //delete old course in admin
                 databaseRef.child("Course details").child(code).setValue(null);
-                //databaseRef.child("Course details").child(code).child("Course Code").setValue(newCourseCode.getText().toString());
-                DatabaseReference reference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("students");
-    //                Toast.makeText(MainActivity3.this, "$$$", Toast.LENGTH_SHORT).show();
-                reference.addValueEventListener(new ValueEventListener() {
+                //update course code in student
+                databaseRef.child("students").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-    //                        Toast.makeText(MainActivity2.this, "$$$" + Objects.requireNonNull(snapshot.child("courses")), Toast.LENGTH_SHORT).show();
-                            HashMap hashMap2 = new HashMap();
-                            hashMap2.put("session", offering);
-                            hashMap2.put("name", name);
-                            hashMap2.put("code", newCourseCode.getText().toString());
-                            databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child("" + newCourseCode.getText().toString() + "").updateChildren(hashMap2);
+                            databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(newCode).child("name").setValue(name);
+                            databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(newCode).child("code").setValue(newCode);
+                            databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(newCode).child("session").setValue(offering);
                             Toast.makeText(MainActivity2.this, "Course code is changed", Toast.LENGTH_SHORT).show();
-                            databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child("" + code + "").setValue(null);
+                            databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(code).setValue(null);
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
             }else{
                 Toast.makeText(MainActivity2.this, "input fields can't be empty", Toast.LENGTH_SHORT).show();
             }
         });
-        Button buttonModifyOffering = findViewById(R.id.button_modify_offering);
+
         buttonModifyOffering.setOnClickListener(v -> {
-            String code = oldCourseCode.getText().toString();
-            String offernew = newOffering.getText().toString();
+            code = oldCourseCode.getText().toString();
+            offernew = newOffering.getText().toString();
             if (!code.equals("") && !offernew.equals("")) {
                 //change the session offering in the admin list
                 databaseRef.child("Course details").child(code).child("session").setValue(offernew);
                 //change the session offering in the student list
-                DatabaseReference reference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("students");
-                reference.addValueEventListener(new ValueEventListener() {
+                databaseRef.child("students").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            HashMap hashMap2 = new HashMap();
-                            hashMap2.put("session", offernew);
-                            databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child("" + code + "").updateChildren(hashMap2);
+                            databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(code).child("session").setValue(offernew);
                             Toast.makeText(MainActivity2.this, "Course offerings are changed", Toast.LENGTH_SHORT).show();
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
             }else{
                 Toast.makeText(MainActivity2.this, "input fields can't be empty", Toast.LENGTH_SHORT).show();
             }
         });
-        Button buttonModifyPreq = findViewById(R.id.button_modify_preq);
+
         buttonModifyPreq.setOnClickListener(v -> {
-            String code = oldCourseCode.getText().toString();
-            String preqNew = newPreq.getText().toString();
-            if (!code.equals("") && !preqNew.equals("")) {
+            code = oldCourseCode.getText().toString();
+            preqNew = newPreq.getText().toString();
+            if (!code.equals("")) {
                 //check if the new pre-req is actually a course in the database
-                DatabaseReference reference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("Course details");
-                reference.addValueEventListener(new ValueEventListener() {
+                databaseRef.child("Course details").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.hasChild(preqNew)){
                             //change admin, no need to change student because pre-req does not need to be added to the student database
                             databaseRef.child("Course details").child(code).child("prereq").setValue(preqNew);
-                            Toast.makeText(MainActivity2.this, "Course Pre-req are changed", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(MainActivity2.this, admin_main.class));
+                            Toast.makeText(MainActivity2.this, "Course Pre-req is changed", Toast.LENGTH_SHORT).show();
                         }else{
                             Toast.makeText(MainActivity2.this, "Entered pre-req does not exist in database", Toast.LENGTH_SHORT).show();
                         }
                     }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
                     }
                 });
-
             }else{
                 Toast.makeText(MainActivity2.this, "input fields can't be empty", Toast.LENGTH_SHORT).show();
             }
@@ -235,9 +198,9 @@ public class MainActivity2 extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity2.this, admin_main.class);
-                intent.putExtra("username", username);
-                startActivity(intent);
+                intent2 = new Intent(MainActivity2.this, admin_main.class);
+                intent2.putExtra("username", username);
+                startActivity(intent2);
             }
         });
     }
