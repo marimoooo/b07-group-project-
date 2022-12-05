@@ -31,7 +31,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 public class MainActivity2 extends AppCompatActivity {
@@ -40,6 +42,7 @@ public class MainActivity2 extends AppCompatActivity {
     //    TextView enteredCourseCode;
     DatabaseReference databaseRef;
     String offering, preq, name;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -205,27 +208,25 @@ public class MainActivity2 extends AppCompatActivity {
             String code = oldCourseCode.getText().toString();
             String preqNew = newPreq.getText().toString();
             if (!code.equals("") && !preqNew.equals("")) {
-                //change admin
-                databaseRef.child("Course details").child(code).child("prereq").setValue(preqNew);
-                Toast.makeText(MainActivity2.this, "Course Pre-req are changed", Toast.LENGTH_SHORT).show();
-                //change student
-                DatabaseReference reference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("students");
+                //check if the new pre-req is actually a course in the database
+                DatabaseReference reference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("Course details");
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            HashMap hashMap2 = new HashMap();
-                            hashMap2.put("session", preqNew);
-                            databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(code).updateChildren(hashMap2);
-                            Toast.makeText(MainActivity2.this, "Course offerings are changed", Toast.LENGTH_SHORT).show();
+                        if(dataSnapshot.hasChild(preqNew)){
+                            //change admin, no need to change student because pre-req does not need to be added to the student database
+                            databaseRef.child("Course details").child(code).child("prereq").setValue(preqNew);
+                            Toast.makeText(MainActivity2.this, "Course Pre-req are changed", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(MainActivity2.this, "Entered pre-req does not exist in database", Toast.LENGTH_SHORT).show();
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
 
                     }
                 });
+
             }else{
                 Toast.makeText(MainActivity2.this, "input fields can't be empty", Toast.LENGTH_SHORT).show();
             }
