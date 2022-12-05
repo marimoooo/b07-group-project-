@@ -67,7 +67,10 @@ public class admin_main extends AppCompatActivity {
         go_to_all_courses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(admin_main.this, DisplayCourseDetails.class));
+                // startActivity(new Intent(admin_main.this, DisplayCourseDetails.class));
+                Intent intent = new Intent(admin_main.this, DisplayCourseDetails.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
             }
         });
     }

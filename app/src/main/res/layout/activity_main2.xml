@@ -23,7 +23,7 @@
         android:id="@+id/newPreq"
         android:layout_width="161dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="76dp"
+        android:layout_marginBottom="72dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="enter new prerequisites"
@@ -33,7 +33,7 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.068"
+        app:layout_constraintHorizontal_bias="0.084"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="LabelFor" />
 
@@ -54,7 +54,6 @@
         android:id="@+id/newOffering"
         android:layout_width="161dp"
         android:layout_height="48dp"
-        android:layout_marginTop="55dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="enter new offering"
@@ -65,10 +64,11 @@
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/newPreq"
         app:layout_constraintEnd_toStartOf="@+id/button_modify_offering"
-        app:layout_constraintHorizontal_bias="0.472"
+        app:layout_constraintHorizontal_bias="0.617"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newCourseCode"
-        app:layout_constraintVertical_bias="0.097"
+        app:layout_constraintVertical_bias="0.422"
+        app:layout_goneMarginTop="20dp"
         tools:ignore="LabelFor" />
 
     <Button
@@ -88,7 +88,7 @@
         android:id="@+id/newCourseCode"
         android:layout_width="161dp"
         android:layout_height="48dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="56dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="enter new coursecode "
@@ -98,6 +98,7 @@
         android:textColor="#4E4646"
         android:textSize="14sp"
         app:layout_constraintEnd_toStartOf="@+id/button_modify_course_code"
+        app:layout_constraintHorizontal_bias="0.617"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newCourseName"
         tools:ignore="LabelFor" />
@@ -120,7 +121,7 @@
         android:id="@+id/newCourseName"
         android:layout_width="155dp"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="enter new course name here"

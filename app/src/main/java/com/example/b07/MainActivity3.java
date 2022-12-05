@@ -51,6 +51,13 @@ public class MainActivity3 extends AppCompatActivity {
                 if(!code.equals("")){
                     //delete course in admin
                     databaseRef.child("Course details").child(code).setValue(null);
+                    Toast.makeText(MainActivity3.this, ""+ code + " is deleted", Toast.LENGTH_SHORT).show();
+                    databaseRef.child("Course details").child(""+code+"").removeValue();
+                    // startActivity(new Intent(MainActivity3.this, admin_main.class));
+                    Intent intent = new Intent(MainActivity3.this, admin_main.class);
+                    intent.putExtra("username", username);
+                    startActivity(intent);
+                    finish();
                     //delete course in student
                     databaseRef.child("students").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -108,9 +115,7 @@ public class MainActivity3 extends AppCompatActivity {
                         public void onCancelled(@NonNull DatabaseError error) {
                         }
                     });
-
-                }
-                else{
+                }else{
                     Toast.makeText(MainActivity3.this, "code can't be empty", Toast.LENGTH_SHORT).show();
                 }
             }
