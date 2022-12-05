@@ -222,7 +222,7 @@ public class MainActivity2 extends AppCompatActivity {
                     prereqList2 = Arrays.asList(preqNew.split(","));
                     for(String p : prereqList2) {
                         //check if the new pre-req is actually a course in the database
-                       databaseRef.child("Course details").addListenerForSingleValueEvent(new ValueEventListener() {
+                        databaseRef.child("Course details").addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 if (dataSnapshot.hasChild(p)) {
@@ -268,9 +268,9 @@ public class MainActivity2 extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent2 = new Intent(MainActivity2.this, admin_main.class);
-                intent2.putExtra("username", username);
-                startActivity(intent2);
+                Intent intent = new Intent(MainActivity2.this, admin_main.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
             }
         });
     }

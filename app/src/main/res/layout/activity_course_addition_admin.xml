@@ -54,26 +54,39 @@
         app:layout_constraintVertical_bias="0.0"
         tools:visibility="visible" />
 
-    <Button
+<!--    <Button-->
 
+<!--        android:id="@+id/button_first"-->
+<!--        style="@android:style/Widget.Material.Light.Button.Small"-->
+<!--        android:layout_width="208dp"-->
+<!--        android:layout_height="53dp"-->
+<!--        android:layout_marginTop="459dp"-->
+<!--        android:backgroundTint="#4CAF50"-->
+<!--        android:stateListAnimator="@android:anim/fade_out"-->
+<!--        android:text="Add new course"-->
+<!--        android:textColor="#FFFFFF"-->
+<!--        app:iconTint="#4CAF50"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.522"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.525"-->
+<!--        app:rippleColor="#50B154"-->
+<!--        app:strokeColor="#4CAF50" />-->
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_first"
-        style="@android:style/Widget.Material.Light.Button.Small"
-        android:layout_width="208dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="459dp"
-        android:backgroundTint="#4CAF50"
-        android:stateListAnimator="@android:anim/fade_out"
-        android:text="Add new course"
-        android:textColor="#FFFFFF"
-        app:iconTint="#4CAF50"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="70dp"
+        android:background="@color/grey"
+        android:text="add new course"
+        app:layout_constraintBottom_toTopOf="@id/move"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.525"
-        app:rippleColor="#50B154"
-        app:strokeColor="#4CAF50" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView"
@@ -83,7 +96,7 @@
         android:fontFamily="sans-serif"
         android:text="Enter course details"
         android:textAlignment="center"
-        android:textColor="#4CAF50"
+        android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
         android:typeface="normal"
@@ -182,18 +195,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <Button
+<!--    <Button-->
+<!--        android:id="@+id/move"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="25dp"-->
+<!--        android:layout_marginEnd="155dp"-->
+<!--        android:layout_marginBottom="39dp"-->
+<!--        android:text="GO back"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="1.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/button_first" />-->
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/move"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="155dp"
-        android:layout_marginBottom="39dp"
-        android:text="GO back"
+        android:background="@color/grey"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_first"
-        app:layout_constraintVertical_bias="0.625" />
+        android:text="back"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
