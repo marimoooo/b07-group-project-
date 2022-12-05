@@ -32,7 +32,6 @@ public class admin_main extends AppCompatActivity {
                 Intent intent = new Intent(admin_main.this, Course_addition_admin.class);
                 intent.putExtra("username", username);
                 startActivity(intent);
-//                startActivity(new Intent(admin_main.this, Course_addition_admin.class));
             }
         });
 
