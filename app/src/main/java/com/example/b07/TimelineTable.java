@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -40,7 +42,7 @@ public class TimelineTable extends AppCompatActivity {
         Intent intent = getIntent();
 
         List<String> courses = intent.getStringArrayListExtra("futureCourses");
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/");
         DatabaseReference reference = database.getReference("students");
         // preguntar sobre el id del estudiante loggeado
         String studentid = "student2"; //tiene que ser el que este logeado
@@ -80,7 +82,13 @@ public class TimelineTable extends AppCompatActivity {
             }
         });
         // Student student = new Student("Victoria", Arrays.asList("CSCA08"));
-
+        Button signupButton = findViewById(R.id.button4);
+        signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(TimelineTable.this, TimelineChoice.class));
+            }
+        });
 
     }
 

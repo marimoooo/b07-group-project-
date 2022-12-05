@@ -19,7 +19,7 @@ public class CourseRepository extends AppCompatActivity{
     public static CourseRepository courseRepository;
 
     public CourseRepository(){
-        this.data = FirebaseDatabase.getInstance();
+        this.data = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/");
         this.reference = data.getReference("Course details");
     }
 

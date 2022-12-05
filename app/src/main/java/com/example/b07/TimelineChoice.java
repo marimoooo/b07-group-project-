@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -41,6 +43,62 @@ public class TimelineChoice extends AppCompatActivity {
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, arrayCourses);
         listCourses.setAdapter(adapter);
         repository.getReference().addChildEventListener(this.onChildEventListener());
+
+//        int id = item.getItemId();
+        Button button = findViewById(R.id.button);
+        button.setOnClickListener(view -> {
+            ArrayList<String> itemSelected = new ArrayList<>();
+            for (int i = 0; i < listCourses.getCount(); i++) {
+                if (listCourses.isItemChecked(i)){
+                    itemSelected.add((String) listCourses.getItemAtPosition(i));
+                }
+            }
+//                Intent intent = new Intent(this,TimelineTable.class);
+            Intent intent = new Intent(TimelineChoice.this,TimelineTable.class);
+            intent.putStringArrayListExtra("futureCourses", itemSelected);
+//                TimelineTable.("futureCourses", itemSelected);
+            startActivity(intent);
+        });;
+        Button signupButton = findViewById(R.id.xyz4);
+        signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(TimelineChoice.this, TimelineTable.class));
+            }
+        });
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        Button button = findViewById(R.id.button);
+        button.setOnClickListener(view -> {
+            ArrayList<String> itemSelected = new ArrayList<>();
+            for (int i = 0; i < listCourses.getCount(); i++) {
+                if (listCourses.isItemChecked(i)){
+                    itemSelected.add((String) listCourses.getItemAtPosition(i));
+                }
+            }
+//                Intent intent = new Intent(this,TimelineTable.class);
+            Intent intent = new Intent(TimelineChoice.this,TimelineTable.class);
+        intent.putStringArrayListExtra("futureCourses", itemSelected);
+//                TimelineTable.("futureCourses", itemSelected);
+            startActivity(intent);
+        });;
+//        if (id == R.id.) {
+//            ArrayList<String> itemSelected = new ArrayList<>();
+//
+//            for (int i = 0; i < listCourses.getCount(); i++) {
+//
+//                if (listCourses.isItemChecked(i)){
+//                    itemSelected.add((String) listCourses.getItemAtPosition(i));
+//                }
+//            }
+//            Intent intent = new Intent(this,TimelineTable.class);
+//            intent.putStringArrayListExtra("futureCourses", itemSelected);
+//            startActivity(intent);
+//        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -48,26 +106,6 @@ public class TimelineChoice extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.main_menu,menu);
         return true;
         //return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.ItemDone) {
-            ArrayList<String> itemSelected = new ArrayList<>();
-
-            for (int i = 0; i < listCourses.getCount(); i++) {
-
-                if (listCourses.isItemChecked(i)){
-                    itemSelected.add((String) listCourses.getItemAtPosition(i));
-                }
-            }
-            Intent intent = new Intent(this,TimelineTable.class);
-            intent.putStringArrayListExtra("futureCourses", itemSelected);
-            startActivity(intent);
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     public ChildEventListener onChildEventListener (){
