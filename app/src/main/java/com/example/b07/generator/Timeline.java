@@ -32,7 +32,7 @@ public class Timeline {
         Season mySeason = Season.valueOf(currentSeason().getNextSeason().toUpperCase());
         int myYear = year;
         if (currentSeason().getName().equals("Fall")) { myYear++; }
-
+        if(coursesFounded != null){
         while (!coursesFounded.isEmpty()) {
             List<String> coursesInSeason = new ArrayList<>();
 
@@ -69,7 +69,8 @@ public class Timeline {
             mySeason = Season.valueOf(mySeason.getNextSeason().toUpperCase());
         }
 
-        return timeLine;
+        return timeLine;}
+        return null;
     }
 
     private Season currentSeason() {
@@ -83,32 +84,33 @@ public class Timeline {
     }
 
     private List<String> foundCourses(List<String> futureCourses, List<String> takenCourses, int index) {
-        Log.d("FUTURE COURSE", futureCourses.toString());
-        List<String> coursesLeft = this.validTakenCourses(futureCourses, takenCourses);
-        if (!coursesLeft.isEmpty()) {
+        if (futureCourses != null) {
+            Log.d("FUTURE COURSE", futureCourses.toString());
+            List<String> coursesLeft = this.validTakenCourses(futureCourses, takenCourses);
+            if (!coursesLeft.isEmpty()) {
 
-            List<String> lastCourses, firstCourses;
+                List<String> lastCourses, firstCourses;
 
-            if(index == futureCourses.size()) {
-                return new ArrayList<>();
-            } else {
-                Course course = this.courseRepo.getCourse(futureCourses.get(index));
+                if (index == futureCourses.size()) {
+                    return new ArrayList<>();
+                } else {
+                    Course course = this.courseRepo.getCourse(futureCourses.get(index));
 
-                firstCourses = foundCourses(course.prereqList, takenCourses, 0);
+                    firstCourses = foundCourses(course.prereqList, takenCourses, 0);
 
-                lastCourses = foundCourses(futureCourses, takenCourses, ++index);
+                    lastCourses = foundCourses(futureCourses, takenCourses, ++index);
 
+                }
+
+                Set<String> allCourses = new LinkedHashSet<>(firstCourses);
+                allCourses.addAll(lastCourses);
+                allCourses.addAll(coursesLeft);
+                return new ArrayList<>(allCourses);
             }
-
-            Set<String> allCourses = new LinkedHashSet<>(firstCourses);
-            allCourses.addAll(lastCourses);
-            allCourses.addAll(coursesLeft);
-            return new ArrayList<>(allCourses);
+            return coursesLeft;
         }
-
-        return coursesLeft;
+        return null;
     }
-
     private List<String> validTakenCourses(List<String> futureCourses, List<String> takenCourses) {
         return futureCourses.stream().filter(c -> !takenCourses.contains(c)).collect(Collectors.toList());
     }

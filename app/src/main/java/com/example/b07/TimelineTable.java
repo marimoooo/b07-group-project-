@@ -32,12 +32,12 @@ public class TimelineTable extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timeline_table);
+        setContentView(R.layout.activity_timeline_table2);
 
         Intent intent = getIntent();
 
         List<String> courses = intent.getStringArrayListExtra("futureCourses");
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/");
         DatabaseReference reference = database.getReference("students");
         // preguntar sobre el id del estudiante loggeado
         String studentid = "student2"; //tiene que ser el que este logeado
@@ -58,7 +58,7 @@ public class TimelineTable extends AppCompatActivity {
                             Timeline timeline = new Timeline(CourseRepository.getInstance());
                             List<Session> sessions = timeline.sessions(courses, codeCourses);
                             tableTimeline = (TableLayout) findViewById(R.id.Timeline);
-
+                            if(sessions != null){
                             for (Session session : sessions) {
                                 TableRow row = new TableRow(getApplicationContext());
                                 TextView tvSession = new TextView(getApplicationContext());
@@ -68,7 +68,7 @@ public class TimelineTable extends AppCompatActivity {
                                 TextView tvCourses = new TextView(getApplicationContext());
                                 tvCourses.setText(session.courses.toString());
                                 row.addView(tvCourses);
-                                tableTimeline.addView(row);
+                                tableTimeline.addView(row);}
                             }
                         }
                     }
