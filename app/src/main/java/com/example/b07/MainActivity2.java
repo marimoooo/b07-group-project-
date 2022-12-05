@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,16 +22,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Objects;
 
 public class MainActivity2 extends AppCompatActivity {
 
     Intent intent, intent2;
     DatabaseReference databaseRef;
-    String username, offering, preq, name, code, newName, newCode, offernew, preqNew;
+    String username, offering, preq, name, code, newName, newCode, offernew, preqNew, newP, finalPreq, finalOffer, newO;
     Button backButton, buttonModifyName, buttonModifyCourseCode, buttonModifyOffering, buttonModifyPreq;
     EditText oldCourseCode, newCourseName, newCourseCode, newOffering, newPreq;
+    List<String> prereqList; //= new ArrayList<>();
+    List<String> prereqList2; //= new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +65,7 @@ public class MainActivity2 extends AppCompatActivity {
                 //set new name on the admin side
                 databaseRef.child("Course details").child(code).child("name").setValue(newName);
                 //set new name on the student side
-                databaseRef.child("students").addValueEventListener(new ValueEventListener() {
+                databaseRef.child("students").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -125,15 +133,49 @@ public class MainActivity2 extends AppCompatActivity {
                 //delete old course in admin
                 databaseRef.child("Course details").child(code).setValue(null);
                 //update course code in student
-                databaseRef.child("students").addValueEventListener(new ValueEventListener() {
+                databaseRef.child("students").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                             databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(newCode).child("name").setValue(name);
                             databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(newCode).child("code").setValue(newCode);
                             databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(newCode).child("session").setValue(offering);
-                            Toast.makeText(MainActivity2.this, "Course code is changed", Toast.LENGTH_SHORT).show();
                             databaseRef.child("students").child(Objects.requireNonNull(snapshot.getKey())).child("courses").child(code).setValue(null);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
+                //update the course code for courses that has the current course as pre-req
+                databaseRef.child("Course details").addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            databaseRef.child("Course details").child(Objects.requireNonNull(snapshot.getKey())).child("prereq").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                                    if (!task.isSuccessful()) {
+                                        Log.e("firebase", "Error getting data", task.getException());
+                                    } else {
+                                        Log.d("firebase", String.valueOf(task.getResult().getValue()));
+                                        if (task.getResult().getValue(String.class).contains(code)){
+                                            String p = task.getResult().getValue(String.class);
+                                            prereqList = Arrays.asList(p.split(","));
+                                            newP="";
+                                            for( String s : prereqList){
+                                                if(s.equals(code)){
+                                                    newP+=newCode + ",";
+                                                }else{
+                                                    newP+=s + ",";
+                                                }
+                                            }
+                                            databaseRef.child("Course details").child(Objects.requireNonNull(snapshot.getKey())).child("prereq").setValue(newP.substring(0,newP.length()-1));
+                                            Toast.makeText(MainActivity2.this, "Course code is changed", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                }
+                            });
                         }
                     }
                     @Override
@@ -146,13 +188,14 @@ public class MainActivity2 extends AppCompatActivity {
         });
 
         buttonModifyOffering.setOnClickListener(v -> {
+            finalOffer="";
             code = oldCourseCode.getText().toString();
             offernew = newOffering.getText().toString();
             if (!code.equals("") && !offernew.equals("")) {
                 //change the session offering in the admin list
                 databaseRef.child("Course details").child(code).child("session").setValue(offernew);
                 //change the session offering in the student list
-                databaseRef.child("students").addValueEventListener(new ValueEventListener() {
+                databaseRef.child("students").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -170,26 +213,53 @@ public class MainActivity2 extends AppCompatActivity {
         });
 
         buttonModifyPreq.setOnClickListener(v -> {
+            finalPreq="";
             code = oldCourseCode.getText().toString();
             preqNew = newPreq.getText().toString();
             if (!code.equals("")) {
-                //check if the new pre-req is actually a course in the database
-                databaseRef.child("Course details").addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.hasChild(preqNew)){
-                            //change admin, no need to change student because pre-req does not need to be added to the student database
-                            databaseRef.child("Course details").child(code).child("prereq").setValue(preqNew);
-                            startActivity(new Intent(MainActivity2.this, admin_main.class));
-                            Toast.makeText(MainActivity2.this, "Course Pre-req is changed", Toast.LENGTH_SHORT).show();
-                        }else{
-                            Toast.makeText(MainActivity2.this, "Entered pre-req does not exist in database", Toast.LENGTH_SHORT).show();
+                //if there are multiple pre-reqs split them and add them accordingly
+                if (preqNew.contains(",")){
+                    prereqList2 = Arrays.asList(preqNew.split(","));
+                    for(String p : prereqList2) {
+                        //check if the new pre-req is actually a course in the database
+                       databaseRef.child("Course details").addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.hasChild(p)) {
+                                    //if the current pre-req exists in the database add it to the string that will represent the new pre-req
+                                    finalPreq += p + ",";
+                                }
+                                if (finalPreq.equals("")) {
+                                    Toast.makeText(MainActivity2.this, "None of the entered pre-req exist in database", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    databaseRef.child("Course details").child(code).child("prereq").setValue(finalPreq.substring(0, finalPreq.length() - 1));
+                                    Toast.makeText(MainActivity2.this, "Course Pre-req is changed. If a course has not been added it is not in the database", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+                            }
+                        });
+                    }
+                }
+                else{
+                    //check if the new pre-req is actually a course in the database
+                    databaseRef.child("Course details").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.hasChild(preqNew)){
+                                //change admin, no need to change student because pre-req does not need to be added to the student database
+                                databaseRef.child("Course details").child(code).child("prereq").setValue(preqNew);
+                                Toast.makeText(MainActivity2.this, "Course Pre-req is changed", Toast.LENGTH_SHORT).show();
+                            }else{
+                                Toast.makeText(MainActivity2.this, "Entered pre-req does not exist in database", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                    }
-                });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
+                }
             }else{
                 Toast.makeText(MainActivity2.this, "input fields can't be empty", Toast.LENGTH_SHORT).show();
             }
