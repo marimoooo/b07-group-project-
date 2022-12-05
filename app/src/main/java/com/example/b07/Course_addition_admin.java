@@ -36,14 +36,6 @@ import java.util.Objects;
 
 public class Course_addition_admin extends AppCompatActivity {
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_course_addition_admin);
-//    }
-
-//    private AppBarConfiguration appBarConfiguration;
-
     Spinner s1;
     List<String> items1;
 
@@ -140,29 +132,12 @@ public class Course_addition_admin extends AppCompatActivity {
             s2.setAdapter(new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, items2));
         }
 
-//        s1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//
-//            @Override
-//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-//                String item = items1.get(i);
-//                sq[0] = item;
-//            }
-//            @Override
-//            public void onNothingSelected(AdapterView<?> adapterView) {
-//
-//            }
-//        });
-
-
         CheckBox c4 = findViewById(R.id.checkBox4);
         CheckBox c2 = findViewById(R.id.checkBox2);
         CheckBox c3 = findViewById(R.id.checkBox3);
 
         final String[] d = {""};
-
-
         final String[] k = {""};
-
 
         s2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -180,11 +155,8 @@ public class Course_addition_admin extends AppCompatActivity {
             }
         });
 
-        // Firebase thing by member 1
         final EditText edit_course_name = findViewById(R.id.editTextTextPersonName3);
         final EditText edit_course_code = findViewById(R.id.editTextTextPersonName2);
-//        final View edit_course_offering = findViewById(R.id.dropdownmenu);
-//        final View edit_course_pre_req = findViewById(R.id.dropdownmenuq);
 
         listView.add(edit_course_code.getText().toString());
 
@@ -206,13 +178,26 @@ public class Course_addition_admin extends AppCompatActivity {
                 if(!Objects.equals(d[0], "")) d[0] = d[0] + ",";
                 d[0] = d[0] + "Summer";
             }
+
+            if(edit_course_name.getText().toString().equals("") && edit_course_code.getText().toString().equals("") && d[0].equals("") && k[0].equals("")){
+                Toast.makeText(this, "Please enter some values", Toast.LENGTH_SHORT).show();
+            }
+            else if(edit_course_name.getText().toString().equals("")){
+                Toast.makeText(this, "Please enter course name", Toast.LENGTH_SHORT).show();
+            }
+            else if(edit_course_code.getText().toString().equals("")){
+                Toast.makeText(this, "Please enter course code", Toast.LENGTH_SHORT).show();
+            }
+            else if(d[0].equals("")){
+                Toast.makeText(this, "Please select course session", Toast.LENGTH_SHORT).show();
+            }
+            else{
             Course_details emp = new Course_details(edit_course_name.getText().toString(), edit_course_code.getText().toString(), d[0], k[0]);
             d[0] = "";
             dao.add(emp).addOnSuccessListener(suc->
             {
                 Toast.makeText(this, edit_course_code.getText().toString() + " is added!", Toast.LENGTH_SHORT).show();
                 emp.setCourse_pre_req("");
-//                Toast.makeText(Course_addition_admin.this, "$$$" + emp.getCourse_pre_req().toString() + "$$$", Toast.LENGTH_SHORT).show();
                 Intent intent1 = new Intent(Course_addition_admin.this, admin_main.class);
                 intent.putExtra("username", username);
                 startActivity(intent1);
@@ -220,7 +205,8 @@ public class Course_addition_admin extends AppCompatActivity {
             {
                 Toast.makeText(this, "" + er.getMessage(), Toast.LENGTH_SHORT).show();
             });
-        });
+        }});
+
 //        items2.add("hola" + edit_course_code.getText().toString());
         first_to_second = findViewById(R.id.move);
         first_to_second.setOnClickListener(new View.OnClickListener() {

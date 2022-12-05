@@ -38,6 +38,7 @@ public class MainActivity3 extends AppCompatActivity {
                 String code = newCourseName.getText().toString();
                 //check if the code is empty
                 if(!code.equals("")){
+                    if(databaseRef.child("Course details").child(""+code+"").child("course").equals(code)){
                     Toast.makeText(MainActivity3.this, ""+ code + " is deleted", Toast.LENGTH_SHORT).show();
                     databaseRef.child("Course details").child(""+code+"").removeValue();
                     startActivity(new Intent(MainActivity3.this, admin_main.class));
@@ -57,10 +58,10 @@ public class MainActivity3 extends AppCompatActivity {
 
                         }
                     });
-                }else{
+                    }}
+                else{
                     Toast.makeText(MainActivity3.this, "code can't be empty", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
 
