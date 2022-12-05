@@ -13,16 +13,10 @@ public class Course  {
 
     public String code;
     public String name;
-    public List<String> sessionList = new ArrayList<>();
-    public List<String> prereqList = new ArrayList<>();
     public String session;
     public String prereq;
 
-    /*public Course(String code, List<String> session, List<String> prerequisites) {
-        this.code = code;
-        this.session = session;
-        this.prerequisites = prerequisites;
-    }*/
+
     public Course(){
 
     }
@@ -32,13 +26,7 @@ public class Course  {
         this.name = name;
         this.session = session;
         this.prereq = prereq;
-        this.sessionList = Arrays.asList(session.split(","));
-        if (prereq == null){
-            this.prereqList = new ArrayList<>();
-        }
-        else {
-            this.prereqList = Arrays.asList(prereq.split(","));
-        }
+
     }
 
     public String getCode() {
@@ -57,52 +45,43 @@ public class Course  {
         this.name = name;
     }
 
-/*    public List<String> getSession() {
+    public List<String> getSessionList() {
+        if (prereq == null){
+            return new ArrayList<>();
+        }
+        else {
+            return Arrays.asList(session.split(","));
+        }
+    }
+
+
+
+    public List<String> getPrereqList() {
+        if (prereq == null){
+            return new ArrayList<>();
+        }
+        else {
+            return Arrays.asList(prereq.split(","));
+        }
+    }
+
+
+
+
+    public String getSession() {
         return session;
     }
 
-    public void setSession(List<String> session) {
+    public void setSession(String session) {
         this.session = session;
     }
 
-    public List<String> getPrerequisites() {
-        return prerequisites;
+    public String getPrereq() {
+        return prereq;
     }
 
-    public void setPrerequisites(List<String> prerequisites) {
-        this.prerequisites = prerequisites;
-    }*/
-
-    public List<String> getSession() {
-        return sessionList;
-    }
-
-    public void setSession(String session) {
-        this.sessionList = Arrays.asList(session.split(","));
-    }
-
-    public List<String> getPrerequisites() {
-        return prereqList;
-    }
-
-    public void setPrerequisites(String prerequisites) {
-        if (prerequisites == null){
-            this.prereqList = new ArrayList<>();
-        }
-        else {
-            this.prereqList = Arrays.asList(prerequisites.split(","));
-        }
-    }
-
-    @Exclude
-    public Map<String, Object> toMap() {
-        HashMap<String, Object> result = new HashMap<>();
-        result.put("code", code);
-        result.put("came", name);
-        result.put("prereq",prereq);
-        result.put("session", session);
-
-        return result;
+    public void setPrereq(String prereq) {
+        this.prereq = prereq;
     }
 
     @Override
@@ -110,8 +89,8 @@ public class Course  {
         return "Course{" +
                 "code='" + code + '\'' +
                 ", name='" + name + '\'' +
-                ", session=" + session +
-                ", prereq=" + prereq +
+                ", session=" + getSessionList() +
+                ", prereq=" + getPrereqList() +
                 '}';
     }
 

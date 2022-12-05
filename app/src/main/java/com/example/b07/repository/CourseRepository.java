@@ -1,5 +1,7 @@
 package com.example.b07.repository;
 
+import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.b07.model.Course;
@@ -17,7 +19,7 @@ public class CourseRepository extends AppCompatActivity{
     public static CourseRepository courseRepository;
 
     public CourseRepository(){
-        this.data = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/");
+        this.data = FirebaseDatabase.getInstance();
         this.reference = data.getReference("Course details");
     }
 
@@ -37,7 +39,7 @@ public class CourseRepository extends AppCompatActivity{
     }
 
 
-//            public CourseRepository() {
+    //            public CourseRepository() {
 //        this.courses.add(
 //                new Course(
 //                        "CSCC24",
@@ -108,6 +110,7 @@ public class CourseRepository extends AppCompatActivity{
     }
 
     public Course getCourse(String code) {
+        Log.d("CODE",code);
         return this.courses
                 .stream()
                 .filter(course -> course.code.equals(code))

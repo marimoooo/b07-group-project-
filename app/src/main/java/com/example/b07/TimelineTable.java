@@ -1,5 +1,6 @@
 package com.example.b07;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.b07.generator.Session;
 import com.example.b07.generator.Timeline;
+import com.example.b07.model.Student;
 import com.example.b07.repository.CourseRepository;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,6 +24,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -32,17 +35,17 @@ public class TimelineTable extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_timeline_table2);
+        setContentView(R.layout.activity_timeline_table);
 
         Intent intent = getIntent();
 
         List<String> courses = intent.getStringArrayListExtra("futureCourses");
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/");
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference reference = database.getReference("students");
         // preguntar sobre el id del estudiante loggeado
         String studentid = "student2"; //tiene que ser el que este logeado
         reference.child(studentid).child("courses").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-        //String code = reference.child(studentid).child("courses").getKey();
+            //String code = reference.child(studentid).child("courses").getKey();
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
@@ -58,7 +61,7 @@ public class TimelineTable extends AppCompatActivity {
                             Timeline timeline = new Timeline(CourseRepository.getInstance());
                             List<Session> sessions = timeline.sessions(courses, codeCourses);
                             tableTimeline = (TableLayout) findViewById(R.id.Timeline);
-                            if(sessions != null){
+
                             for (Session session : sessions) {
                                 TableRow row = new TableRow(getApplicationContext());
                                 TextView tvSession = new TextView(getApplicationContext());
@@ -68,7 +71,7 @@ public class TimelineTable extends AppCompatActivity {
                                 TextView tvCourses = new TextView(getApplicationContext());
                                 tvCourses.setText(session.courses.toString());
                                 row.addView(tvCourses);
-                                tableTimeline.addView(row);}
+                                tableTimeline.addView(row);
                             }
                         }
                     }
@@ -76,7 +79,7 @@ public class TimelineTable extends AppCompatActivity {
                 }
             }
         });
-       // Student student = new Student("Victoria", Arrays.asList("CSCA08"));
+        // Student student = new Student("Victoria", Arrays.asList("CSCA08"));
 
 
     }
