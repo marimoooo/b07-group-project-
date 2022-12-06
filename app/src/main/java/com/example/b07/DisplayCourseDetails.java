@@ -46,7 +46,6 @@ public class DisplayCourseDetails extends AppCompatActivity {
                 String course_Session = snapshot.child("session").getValue().toString();
                 String course_PreReq = snapshot.child("prereq").getValue().toString();
                 myArrayList.add("\n" + "Course Code: " + course_Code + "\n" + "Course Name: "+ course_Name + "\n" + "Course Offering: "+ course_Session + "\n" + "Course Pre-requisites: "+ course_PreReq + "\n");
-
                 myArrayAdapter.notifyDataSetChanged();
             }
 

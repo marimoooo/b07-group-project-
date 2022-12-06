@@ -36,6 +36,15 @@ public class student_main extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        final Button timline = findViewById(R.id.timelineButton);
+        timline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(student_main.this, TimelineChoice.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
+            }
+        });
 
         addCourseButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +62,7 @@ public class student_main extends AppCompatActivity {
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { startActivity(new Intent(student_main.this, TimelineChoice.class));}
+            public void onClick(View v) { startActivity(new Intent(student_main.this, Login.class));}
         });
     }
 }
