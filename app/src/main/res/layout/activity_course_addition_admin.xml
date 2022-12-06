@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Course_addition_admin">
+
     <CheckBox
         android:id="@+id/checkBox4"
         android:layout_width="96dp"
@@ -25,13 +26,13 @@
         android:id="@+id/dropdownmenuq"
         android:layout_width="124dp"
         android:layout_height="24dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="3dp"
         android:layout_marginEnd="85dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginBottom="4dp"
         android:entries="@array/courselist"
-        app:layout_constraintBottom_toTopOf="@+id/button_first"
+        app:layout_constraintBottom_toTopOf="@+id/pre"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.744"
+        app:layout_constraintHorizontal_bias="0.707"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -146,15 +147,14 @@
         android:layout_width="237dp"
         android:layout_height="29dp"
         android:layout_marginStart="130dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="-20dp"
         android:layout_marginEnd="132dp"
-        android:layout_marginBottom="7dp"
         android:text="Select the course pre-requisites"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/dropdownmenuq"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+        app:layout_constraintTop_toBottomOf="@+id/checkBox4" />
 
     <CheckBox
         android:id="@+id/checkBox2"
@@ -186,15 +186,59 @@
         android:id="@+id/move"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="159dp"
         android:layout_marginTop="25dp"
-        android:layout_marginEnd="164dp"
+        android:layout_marginEnd="155dp"
         android:layout_marginBottom="39dp"
-        android:text="Move"
+        android:text="GO back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_first"
+        app:layout_constraintVertical_bias="0.625" />
+
+    <TextView
+        android:id="@+id/pre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="72dp"
+        android:text="Selected Pre-req"
+        app:layout_constraintBottom_toTopOf="@+id/button_first"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dropdownmenuq" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="-4dp"
+        android:layout_marginBottom="31dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/button_first"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.475"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pre"
+        app:layout_constraintVertical_bias="0.857" />
+
+    <Button
+        android:id="@+id/button11"
+        android:layout_width="83dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="60dp"
+        android:layout_marginBottom="49dp"
+        android:text="remove selected value"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_first"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/pre"
+        app:layout_constraintTop_toBottomOf="@+id/dropdownmenuq"
         app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

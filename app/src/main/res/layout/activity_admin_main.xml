@@ -7,13 +7,35 @@
     tools:context=".admin_main">
 
     <TextView
-        android:id="@+id/textViewName2"
+        android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="92dp"
+        android:fontFamily="serif-monospace"
+        android:text="UNIVERSITY OF TORONTO - SINCE 1827"
+        android:textAllCaps="true"
+        android:textColor="#08124A"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <TextView
+        android:id="@+id/textViewName2"
+        android:layout_width="210dp"
+        android:layout_height="31dp"
         android:layout_marginStart="200dp"
         android:layout_marginTop="250dp"
+        android:layout_marginEnd="211dp"
+        android:layout_marginBottom="400dp"
         android:textSize="24dp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.28"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,8 +45,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
         android:layout_marginTop="250dp"
-        android:textSize="24dp"
+        android:layout_marginEnd="-100dp"
+        android:layout_marginBottom="50dp"
         android:text="Hello! "
+        android:textSize="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/addCourseButton"
+        app:layout_constraintEnd_toStartOf="@+id/imageView6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,9 +67,9 @@
         android:id="@+id/modifyCourseButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="228dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="228dp"
         android:background="@color/grey"
         android:text="modify course"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -53,9 +79,9 @@
         android:id="@+id/addCourseButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="300dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
+        android:layout_marginBottom="300dp"
         android:background="@color/grey"
         android:text="add course"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -65,13 +91,37 @@
         android:id="@+id/deleteCourseButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="152dp"
         android:background="@color/grey"
         android:text="delete course"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="16dp" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="388dp"
+        android:layout_height="240dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/uoft_all_logo" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="376dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="15dp"
+        android:text="See all courses"
+        app:layout_constraintBottom_toTopOf="@+id/addCourseButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text2" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
