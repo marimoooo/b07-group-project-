@@ -16,120 +16,67 @@
     <!--        app:layout_constraintStart_toStartOf="parent"-->
     <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <Spinner
-        android:id="@+id/dropdownmenuq5"
-        android:layout_width="126dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="-10dp"
-        android:layout_marginBottom="60dp"
-        android:entries="@array/courselist"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.54"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView23" />
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button3"
-        android:layout_width="341dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="-20dp"
-        android:layout_marginBottom="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/grey"
         android:text="delete course"
-        app:layout_constraintBottom_toTopOf="@+id/imageView9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView26" />
+        android:layout_marginStart="80dp"
+        android:layout_marginEnd="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newCourseName"
+        app:layout_constraintVertical_bias="0.179" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/backButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/grey"
-        android:text="main page"
+        android:text="back"
         app:layout_constraintBottom_toBottomOf="parent" />
+
+    <EditText
+        android:id="@+id/newCourseName"
+        android:layout_width="231dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="270dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="Type the course name to delete"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="#4E4646"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></EditText>
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/newCourseName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/uoft_all_logo" />
 
     <ImageView
         android:id="@+id/imageView9"
         android:layout_width="446dp"
         android:layout_height="180dp"
+        android:layout_marginTop="44dp"
         android:layout_marginBottom="26dp"
         app:layout_constraintBottom_toTopOf="@+id/backButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button3"
+        app:layout_constraintVertical_bias="0.954"
         app:srcCompat="@drawable/login_logo" />
-
-    <TextView
-        android:id="@+id/textView23"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="252dp"
-        android:layout_marginBottom="16dp"
-        android:text="Please select a course to delete"
-        app:layout_constraintBottom_toTopOf="@+id/dropdownmenuq5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView26"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="243dp"
-        android:layout_marginBottom="39dp"
-        android:text="Selected course"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.813"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dropdownmenuq5" />
-
-    <Button
-        android:id="@+id/button12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="74dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="10dp"
-        android:text="clear"
-        android:backgroundTint="@color/grey"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView26"
-        app:layout_constraintTop_toBottomOf="@+id/dropdownmenuq5" />
-
-    <TextView
-        android:id="@+id/textView27"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginBottom="24dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
-        app:layout_constraintEnd_toStartOf="@+id/button12"
-        app:layout_constraintStart_toEndOf="@+id/textView26"
-        app:layout_constraintTop_toBottomOf="@+id/dropdownmenuq5" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="218dp"
-        android:layout_height="91dp"
-        android:layout_marginStart="239dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="-47dp"
-        android:layout_marginBottom="152dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView23"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/xxxxxxxxxxxx456" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
