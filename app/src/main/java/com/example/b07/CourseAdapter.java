@@ -16,7 +16,7 @@ import java.util.List;
 
 public class CourseAdapter extends ArrayAdapter<Course> {
     private static class ViewHolder{
-        TextView tvCode;
+         TextView tvCode;
         TextView tvSession;
         TextView tvName;
     }
@@ -28,7 +28,7 @@ public class CourseAdapter extends ArrayAdapter<Course> {
         //context = ui; resource = id
     }
 
-    @Override
+   @Override
     public View getView(int position, View convertView, ViewGroup parent){
         Course course = getItem(position);
         ViewHolder holder;

@@ -29,6 +29,8 @@ public class DisplayCourseDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_course_details);
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username");
 
         ArrayAdapter<String> myArrayAdapter = new ArrayAdapter<String>(DisplayCourseDetails.this, android.R.layout.simple_list_item_1, myArrayList);
 
@@ -73,7 +75,12 @@ public class DisplayCourseDetails extends AppCompatActivity {
         Button gobackbutton = findViewById(R.id.button9);
         gobackbutton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) { startActivity(new Intent(DisplayCourseDetails.this, admin_main.class));}
+            public void onClick(View v) {
+//                startActivity(new Intent(DisplayCourseDetails.this, admin_main.class));
+                Intent intent = new Intent(DisplayCourseDetails.this, admin_main.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
+            }
         });
 
     }
