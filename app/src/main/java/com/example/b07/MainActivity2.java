@@ -85,7 +85,7 @@ public class MainActivity2 extends AppCompatActivity {
         buttonModifyCourseCode.setOnClickListener(v -> {
             code = oldCourseCode.getText().toString();
             newCode = newCourseCode.getText().toString();
-            if (!code.equals("") && !newCode.equals("")){
+            if (!code.equals("") && !newCode.equals("")) {
                 databaseRef.child("Course details").child(newCode).child("code").setValue(newCode);
                 //get name from old course code add it to the new course code
                 databaseRef.child("Course details").child(code).child("name").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
