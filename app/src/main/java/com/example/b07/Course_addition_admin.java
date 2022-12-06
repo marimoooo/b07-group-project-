@@ -84,13 +84,14 @@ public class Course_addition_admin extends AppCompatActivity {
         s2 = findViewById(R.id.dropdownmenuq);
 
         items1 = new ArrayList<>();
-        items2 = new ArrayList<>();
 
         // The Course Offering schedule
         items1.add("Fall");
         items1.add("Winter");
         items1.add("Summer");
         final String[] z = {""};
+        items2 = new ArrayList<>();
+        items2.add("--select--");
         DatabaseReference reference = FirebaseDatabase.getInstance("https://course-planner-14-default-rtdb.firebaseio.com/").getReference().child("Course details");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -109,7 +110,6 @@ public class Course_addition_admin extends AppCompatActivity {
             }
         });
         // The Course Pre-req (to be defined)
-        items2.add("--select--");
 //        items2.add(Arrays.toString(z));
 //        items2.add("CSCA48");
 //        items2.add("CSCB07");
@@ -138,7 +138,8 @@ public class Course_addition_admin extends AppCompatActivity {
 
         final String[] d = {""};
         final String[] k = {""};
-
+        final TextView edit_pre = findViewById(R.id.textView25);
+        edit_pre.setText("");
         s2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
@@ -147,7 +148,8 @@ public class Course_addition_admin extends AppCompatActivity {
                 if(!Objects.equals(item, "--select--")){
                     if(!Objects.equals(k[0], "")) k[0] = k[0] + ",";
                     k[0] = k[0] + item;
-                    Toast.makeText(Course_addition_admin.this, "" + item + "is added to the course pre-req.", Toast.LENGTH_SHORT).show();}
+                    edit_pre.setText(k[0]);
+                    Toast.makeText(Course_addition_admin.this, "" + item + " is added to the course pre-req.", Toast.LENGTH_SHORT).show();}
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -158,7 +160,17 @@ public class Course_addition_admin extends AppCompatActivity {
         final EditText edit_course_name = findViewById(R.id.editTextTextPersonName3);
         final EditText edit_course_code = findViewById(R.id.editTextTextPersonName2);
 
+//        setContentView(edit_pre);
         listView.add(edit_course_code.getText().toString());
+        Button remove_pre = findViewById(R.id.button11);
+
+        remove_pre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edit_pre.setText("");
+                Toast.makeText(Course_addition_admin.this, "Selected courses removed", Toast.LENGTH_SHORT).show();
+        }
+        });
 
         Button btn = findViewById(R.id.button_first);
 
@@ -192,7 +204,7 @@ public class Course_addition_admin extends AppCompatActivity {
                 Toast.makeText(this, "Please select course session", Toast.LENGTH_SHORT).show();
             }
             else{
-            Course_details emp = new Course_details(edit_course_name.getText().toString(), edit_course_code.getText().toString(), d[0], k[0]);
+                Course_details emp = new Course_details(edit_course_name.getText().toString(), edit_course_code.getText().toString(), d[0], k[0]);
             d[0] = "";
             dao.add(emp).addOnSuccessListener(suc->
             {

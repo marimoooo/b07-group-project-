@@ -5,6 +5,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity2">
+
+    <Spinner
+        android:id="@+id/sessionlist"
+        android:layout_width="124dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:entries="@array/courselist"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newCourseCode" />
+
+    <Spinner
+        android:id="@+id/dropdownmenuq2"
+        android:layout_width="124dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="112dp"
+        android:entries="@array/courselist"
+        app:layout_constraintBottom_toTopOf="@+id/button_modify_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/enterDetailInsCD2"
         android:layout_width="wrap_content"
@@ -41,48 +63,28 @@
         android:id="@+id/old"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="152dp"
+        android:layout_marginTop="188dp"
         android:text="original course"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.224"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/newOffering"
-        android:layout_width="161dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="55dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="enter new offering"
-        android:inputType="textPersonName"
-        android:text=""
-        android:textAlignment="center"
-        android:textColor="#4E4646"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/newPreq"
-        app:layout_constraintEnd_toStartOf="@+id/button_modify_offering"
-        app:layout_constraintHorizontal_bias="0.472"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newCourseCode"
-        app:layout_constraintVertical_bias="0.097"
-        tools:ignore="LabelFor" />
 
     <Button
         android:id="@+id/button_modify_name"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="57dp"
+        android:layout_marginTop="56dp"
         android:backgroundTint="@color/grey"
         android:text="modify course name"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.924"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/oldCourseCode" />
+        app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
     <EditText
         android:id="@+id/newCourseCode"
@@ -114,13 +116,13 @@
         app:layout_constraintHorizontal_bias="0.924"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_modify_name"
-        app:layout_constraintVertical_bias="0.14" />
+        app:layout_constraintVertical_bias="0.121" />
 
     <EditText
         android:id="@+id/newCourseName"
         android:layout_width="155dp"
         android:layout_height="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="enter new course name here"
@@ -129,7 +131,7 @@
         android:textColor="#4E4646"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintHorizontal_bias="0.085"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/new_course"
         tools:ignore="LabelFor" />
@@ -138,33 +140,15 @@
         android:id="@+id/new_course"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="252dp"
+        android:layout_marginTop="248dp"
         android:text="new course"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.069"
+        app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/oldCourseCode"
-        android:layout_width="219dp"
-        android:layout_height="48dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="enter course code here"
-        android:inputType="textPersonName"
-        android:text=""
-        android:textColor="#4E4646"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/old"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="LabelFor" />
 
     <TextView
         android:id="@+id/instructionCD2"
@@ -181,6 +165,7 @@
         android:id="@+id/button_modify_offering"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/grey"
         android:text="modify session offering"
         android:textColor="@color/black"
@@ -189,7 +174,7 @@
         app:layout_constraintHorizontal_bias="0.924"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_modify_course_code"
-        app:layout_constraintVertical_bias="0.41" />
+        app:layout_constraintVertical_bias="0.368" />
 
     <Button
         android:id="@+id/button_modify_preq"
@@ -212,6 +197,60 @@
         android:text="back"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="115dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="57dp"
+        android:layout_marginEnd="80dp"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/instructionCD2" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="-5dp"
+        android:layout_marginBottom="72dp"
+        android:text="Session"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/newPreq"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView30" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:layout_marginEnd="52dp"
+        android:layout_marginBottom="9dp"
+        android:text="Selected Offerings"
+        app:layout_constraintBottom_toTopOf="@+id/textView28"
+        app:layout_constraintEnd_toStartOf="@+id/button_modify_offering"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sessionlist" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="86dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginEnd="278dp"
+        android:layout_marginBottom="29dp"
+        android:text="Delete"
+        android:textSize="10sp"
+        app:iconPadding="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/newPreq"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
