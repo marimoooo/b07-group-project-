@@ -46,7 +46,7 @@ public class MainActivityTest extends AppCompatActivity {
         studentLoginButton = findViewById(R.id.studentLoginButton);
         adminLoginButton = findViewById(R.id.adminLoginButton);
         presenter = new Presenter(new Model(),this);
-
+//ok
         studentLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
