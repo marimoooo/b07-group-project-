@@ -47,7 +47,7 @@ public class Course  {
     }
 
     public List<String> getSessionList() {
-        if (prereq == null){
+        if (Objects.equals(prereq, "")){
             return new ArrayList<>();
         }
         else {
@@ -58,6 +58,7 @@ public class Course  {
 
 
     public List<String> getPrereqList() {
+
         if (Objects.equals(prereq, "")){
             return new ArrayList<>();
         }
