@@ -90,6 +90,7 @@ public class Timeline {
             List<String> lastCourses, firstCourses;
             Log.d("INDEX", String.valueOf(index));
             Log.d("FUTURE COURSES SIZE", String.valueOf(futureCourses.size()));
+
             if(index == futureCourses.size()) {
                 return new ArrayList<>();
             } else {
