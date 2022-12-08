@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class Course  {
 
@@ -57,7 +58,7 @@ public class Course  {
 
 
     public List<String> getPrereqList() {
-        if (prereq == null){
+        if (Objects.equals(prereq, "")){
             return new ArrayList<>();
         }
         else {
